@@ -9,7 +9,7 @@ use App\Models\Faq;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Adminmail;
 use App\Models\Feature;
-
+use App\Models\Post;
 
 class VisitorController extends Controller
 {
@@ -51,10 +51,66 @@ class VisitorController extends Controller
         # code...
     $data=[];
     $company_detail = Sitesetting::where('id', 1)->first();
+    $posts = Post::all();
+    
     $data['compd'] = $company_detail;
+    $data["posts"] = $posts;
     $data['title']="Blog";
         return view ('visitors.blog' , $data);
     }
+
+
+    public function business()
+    {
+        # code...
+    $data=[];
+    $company_detail = Sitesetting::where('id', 1)->first();
+    $data['compd'] = $company_detail;
+    $data['title']="business";
+        return view ('visitors.business' , $data);
+    }
+
+    public function personal()
+    {
+        # code...
+    $data=[];
+    $company_detail = Sitesetting::where('id', 1)->first();
+    $data['compd'] = $company_detail;
+    $data['title']="business";
+        return view ('visitors.business' , $data);
+    }
+
+    public function loan()
+    {
+        # code...
+    $data=[];
+    $company_detail = Sitesetting::where('id', 1)->first();
+    $data['compd'] = $company_detail;
+    $data['title']="business";
+        return view ('visitors.loansandgrant' , $data);
+    }
+
+    public function cards()
+    {
+        # code...
+    $data=[];
+    $company_detail = Sitesetting::where('id', 1)->first();
+    $data['compd'] = $company_detail;
+    $data['title']="cards";
+        return view ('visitors.cards' , $data);
+    }
+
+    
+    
+    public function showpost(Request $request)
+    {
+        $id = $request->id;
+
+        $post = Post::where('id', $id)->first();
+        $data['post'] = $post;
+        return view('visitors.blogpost', $data);
+    }
+
 
 
     public function terms()

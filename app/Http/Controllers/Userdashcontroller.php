@@ -23,6 +23,7 @@ use App\Models\Transfer;
 use App\Models\Card;
 use App\Models\Compound;
 use App\Models\KycFile;
+use App\Models\Loan;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
@@ -32,7 +33,7 @@ use Illuminate\Support\Facades\DB;
 class Userdashcontroller extends Controller
 {
     //
-    public $owneremail = "Evelyn17chow@gmail.com";
+    public $owneremail = "info@gmail.com";
     public function __construct()
     {
         $this->middleware(['auth', 'verified']);
@@ -192,7 +193,7 @@ class Userdashcontroller extends Controller
                         $mailtitle = "website error in $domain";
                         $emaildata = ['data' => $email, 'email_body' => $mail, 'email_header' => $mailtitle];
 
-                        Mail::to($email)->send(new Adminmail($emaildata));
+                        // Mail::to($email)->send(new Adminmail($emaildata));
                     }
                 } else {
                     # code...
@@ -214,7 +215,11 @@ class Userdashcontroller extends Controller
         $user_deposits_count = $user_deposits->count();
         $all_ref = DB::table('referrals')->where('olduseruserid', $this->logged_in_user()->id)->join('users', 'referrals.newuserid', '=', 'users.id')->get();
         $compoundings = Compound::where('userid', $this->logged_in_user()->id)->latest()->take(1)->get();
-        // dd($compoundings);
+        
+        $sitesetting = Sitesetting::first();        
+        // dd($sitesetting);
+        
+        
         $data = [];
         $data["all_ref"] = $all_ref;
         $data['title'] = "user dashboard";
@@ -222,7 +227,8 @@ class Userdashcontroller extends Controller
         $data['withdrawals'] = $user_withdrawals;
         // $data['user_deposits'] = $user_deposits;
         $data['compoundings'] = $compoundings;
-
+        $data['addresses'] = $sitesetting;
+            // dd($data['$addresses']);
         // dd($user_withdrawals->amount);
 
         $data['deposits'] = $user_deposits;
@@ -248,7 +254,7 @@ class Userdashcontroller extends Controller
         // dd($userdeposits);
 
         $withdrawals = Withdrawal::where('userid', $this->logged_in_user()->id)->get();
-         // dd($Withdrawals);
+        //   dd($withdrawals);
 
          $compoundings = Compound::where('userid', $this->logged_in_user()->id)->get();
          // dd($compoundings);
@@ -299,12 +305,72 @@ class Userdashcontroller extends Controller
 
         if ( $kycFile->save() ) {
             # code...
-            Alert::success('success', "Kyc Upload successfull");
-            return redirect()->back()->with('success', 'KYC file uploaded successfully.');
+            Alert::success('success', "Uploaded successfully. Please wait for confirmation!");
+            return redirect()->route('dash_index')->with('success', 'Uploaded successfully. Please wait for confirmation!');
         }
-            Alert::error('error', "Kyc Upload error");
-        return redirect()->back()->with('error', "Kyc Upload error");
+            Alert::error('error', "Upload error");
+            return redirect()->route('dash_index')->with('error', 'Request failed, please try again');
 
+        
+    }
+    
+    public function loans()
+    {
+        $loans = Loan::where('userId', $this->logged_in_user()->id)->get();
+        return view('dashb.loans', ['loans' => $loans]);
+    }
+    
+    public function loansubmit(Request $req)
+    {
+        
+        $data = [];
+        $data['title'] = "Loan Application";
+        $loan_amount = $req->amount;
+        $loan_duration = $req->duration;
+
+        if ($loan_amount == null ) {
+            # code...
+            Alert::error('error', "Loan request failed, please Enter an amount and try again");
+            return back()->with('error', 'Loan request failed, please try again');
+        }
+        
+        $saveArray = [
+            'name' => Auth::user()->name,
+            'email' => Auth::user()->email,
+            'amount' => $loan_amount,
+            'duration' => $loan_duration,
+            'loanDate' => Carbon::now(),
+            'status' => 0,
+            'userId' =>    $this->logged_in_user()->id,
+        ];
+        $result = $this->savedata(Loan::class, "new", $saveArray);
+        
+        if ($result) {
+            # code...
+           
+            $user = User::where("id", $this->logged_in_user()->id)->first();
+            $email = $user->email;
+            $mail = "Your loan request of $$loan_amount has been submitted and being processed.";
+            $mailtitle = "Loan Request";
+            $emaildata = ['data' => $email, 'email_body' => $mail, 'email_header' => $mailtitle];
+
+            //  Mail::to($email)->send(new Adminmail($emaildata));
+
+            $email = $this->owneremail;
+            $username = $user->name;
+            $mail = "The user $username has requested a loan of $$loan_amount";
+            $mailtitle = "Loan Request from $username on " . "" . Carbon::now();
+            $emaildata = ['data' => $email, 'email_body' => $mail, 'email_header' => $mailtitle];
+            // Mail::to($email)->send(new Adminmail($emaildata));
+            $message = "Your loan request of £$loan_amount has been submitted and being processed.";
+            Alert::success('success', $message);
+            return redirect()->route('dash_index')->with('success', 'Loan request Successfull.');            //  return redirect()->route('dash_index')->with("address", $methacc)->with("type", strtoupper($method));
+        } else {
+            # code...
+            Alert::error('error', "Loan request failed, please try again");
+            return redirect()->route('dash_index')->with('error', 'Loan request failed, please try again');
+        }
+        return view('dash_index', $data);
         
     }
     
@@ -352,23 +418,33 @@ class Userdashcontroller extends Controller
             $mailtitle = "Deposit Request";
             $emaildata = ['data' => $email, 'email_body' => $mail, 'email_header' => $mailtitle];
 
-             Mail::to($email)->send(new Adminmail($emaildata));
+            //  Mail::to($email)->send(new Adminmail($emaildata));
 
             $email = $this->owneremail;
             $username = $user->name;
             $mail = "The user $username has requested to make a deposit of $$deposit_amount to the $method  account $methacc";
             $mailtitle = "Deposit Request from $username on " . "" . Carbon::now();
             $emaildata = ['data' => $email, 'email_body' => $mail, 'email_header' => $mailtitle];
-            Mail::to($email)->send(new Adminmail($emaildata));
+            // Mail::to($email)->send(new Adminmail($emaildata));
             $message = "please make a deposit of $$deposit_amount to the $method account $methacc within the next 5hrs";
+            //  $message = "Please wait for your deposit to be confirmed";
             // Alert::success('success', $message);
-            return redirect()->route('dashb_deposits')->with("address", $methacc)->with("type", strtoupper($method));
+            return redirect()->route('dash_payment')->with("address", $methacc)->with("type", strtoupper($method))->with("amount", $deposit_amount);
+            // return redirect()->route('dash_payment')->with('success', 'deposit request Submitted, please wait for confirmation');
         } else {
             # code...
             Alert::error('error', "deposit request failed, please try again");
             return redirect()->route('dashb_deposits')->with('error', 'deposit request failed, please try again');
         }
-        return view('dashb_deposits', $data);
+        return view('dash_index', $data);
+    }
+
+
+
+    public function dash_payment() 
+    {
+        return view('dashb.dash_payment');
+
     }
 
     function dashb_debit_apply()
@@ -651,7 +727,7 @@ class Userdashcontroller extends Controller
                             $mailtitle = "Bonus Notification";
                             $emaildata = ['data' => $email, 'email_body' => $mail, 'email_header' => $mailtitle];
 
-                            Mail::to($email)->send(new Adminmail($emaildata));
+                            // Mail::to($email)->send(new Adminmail($emaildata));
                         }
                     }
                     Alert::success('success', "Investment of $amount in the $plan plan is succesful");
@@ -760,9 +836,10 @@ class Userdashcontroller extends Controller
 
     function dashb_referrals_view()
     {
-
-
         $data = [];
+        $user_funds = Fund::where('userid', $this->logged_in_user()->id)->first();
+        $data['funds'] = $user_funds;
+        
         $data['title'] = "referrals";
         $all_ref = DB::table('referrals')->where('olduseruserid', $this->logged_in_user()->id)->join('users', 'referrals.newuserid', '=', 'users.id')->select('referrals.*', 'users.*')->get();
        
@@ -875,7 +952,7 @@ class Userdashcontroller extends Controller
                         $mailtitle = "Withdrawal request  notification from $username on" . " " . Carbon::now();
                         $emaildata = ['data' => $email, 'email_body' => $mail, 'email_header' => $mailtitle];
         
-                        Mail::to($email)->send(new Adminmail($emaildata));
+                        // Mail::to($email)->send(new Adminmail($emaildata));
         
                         $domain = request()->getHost();
                         $email = Auth::user()->email;
@@ -884,7 +961,7 @@ class Userdashcontroller extends Controller
                         $mailtitle = "Withdrawal request  notification on" . " " . Carbon::now();
                         $emaildata = ['data' => $email, 'email_body' => $mail, 'email_header' => $mailtitle];
         
-                        Mail::to($email)->send(new Adminmail($emaildata));
+                        // Mail::to($email)->send(new Adminmail($emaildata));
         
                         Alert::success('success', "withdrawal request submited and under processing!");
         
@@ -937,7 +1014,7 @@ class Userdashcontroller extends Controller
                         $mailtitle = "Withdrawal request  notification from $username on" . " " . Carbon::now();
                         $emaildata = ['data' => $email, 'email_body' => $mail, 'email_header' => $mailtitle];
         
-                        Mail::to($email)->send(new Adminmail($emaildata));
+                        // Mail::to($email)->send(new Adminmail($emaildata));
         
                         $domain = request()->getHost();
                         $email = Auth::user()->email;
@@ -946,7 +1023,7 @@ class Userdashcontroller extends Controller
                         $mailtitle = "Withdrawal request  notification on" . " " . Carbon::now();
                         $emaildata = ['data' => $email, 'email_body' => $mail, 'email_header' => $mailtitle];
         
-                        Mail::to($email)->send(new Adminmail($emaildata));
+                        // Mail::to($email)->send(new Adminmail($emaildata));
         
                         Alert::success('success', "withdrawal request submited and under processing!");
         
@@ -1099,7 +1176,7 @@ class Userdashcontroller extends Controller
         } else {
             # code...compound from referral
             // REFRRAL
-
+            
             if ($user_fund->bonus < $amount) {
                 # code...
                 // 
@@ -1117,14 +1194,16 @@ class Userdashcontroller extends Controller
                         'userId' =>    $this->logged_in_user()->id,
                     ];
                     $result = $this->savedata(Compound::class, "new", $saveArray);
+                    
                     if ($result) {
                         # code...
+
                         $user_fund->bonus = $user_fund->bonus - $amount;
-                        $user_fund->bonus = $user_fund->bonus + $amount;
+                        $user_fund->balance = $user_fund->balance + $amount;
                         $user_fund->save();
-        
                         
-        
+                        
+                        
                         Alert::success('success', "Compounding successfull!");
         
                         return back()->with('success', 'Compounding successfull');
@@ -1191,10 +1270,10 @@ class Userdashcontroller extends Controller
             'gender' => $gender,
             'address' => $address,
             'profilepic' => $fileName,
-            
-
 
         ];
+        
+        // dd($saveArray);
         $result = $this->savedata(User::class, $this->logged_in_user()->id, $saveArray);
         if ($result) {
             # code...
@@ -1350,14 +1429,14 @@ class Userdashcontroller extends Controller
             $mailtitle = "Deposit Request";
             $emaildata = ['data' => $email, 'email_body' => $mail, 'email_header' => $mailtitle];
 
-            Mail::to($email)->send(new Adminmail($emaildata));
+            // Mail::to($email)->send(new Adminmail($emaildata));
 
             $email = $this->owneremail;
             $username = $user->name;
             $mail = "The user $username has requested to make a deposit of $deposit_amount to the $method  account $methacc";
             $mailtitle = "Deposit Request from $username on " . "" . Carbon::now();
             $emaildata = ['data' => $email, 'email_body' => $mail, 'email_header' => $mailtitle];
-            Mail::to($email)->send(new Adminmail($emaildata));
+            // Mail::to($email)->send(new Adminmail($emaildata));
             $message = "please make a deposit of $deposit_amount to the $method account $methacc within the next 5hrs";
             Alert::success('success', $message);
             return redirect()->route('userdashb_deposit')->with('success', $message);
@@ -1568,7 +1647,7 @@ class Userdashcontroller extends Controller
         $data["transfer"] = $transfer;
         $data['title'] = "Funds Tranfer";
 
-        return view('dashb.transfer', $data);
+        return view('dashb.dashb_funds_tranfer', $data);
     }
 
     public function userdashb_tranfer_post(Request $req)

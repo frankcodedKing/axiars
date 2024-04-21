@@ -24,6 +24,10 @@ class CreateUsersTable extends Migration
             $table->string('blocked')->default(0);
             $table->rememberToken();
             $table->timestamps();
+            $table->string('country')->nullable();
+            $table->string('account_number')->nullable();
+            $table->string('acc_type')->nullable();
+            $table->string('pin')->nullable();
             $table->string('street')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();

@@ -28,7 +28,7 @@ Auth::routes(['verify' => true]);
 
 //ADMIN
 //admin index
-Route::get('/nanoadmin', [App\Http\Controllers\adminController::class, 'adminindex'])->name('adminindex');
+Route::get('/webadmin', [App\Http\Controllers\adminController::class, 'adminindex'])->name('adminindex');
 Route::post('/post_company_settings', [App\Http\Controllers\adminController::class, 'post_company_settings'])->name('post_company_settings');
 
 Route::post('/password_reset_save', [App\Http\Controllers\adminController::class, 'password_reset_save'])->name('password_reset_save');
@@ -188,6 +188,19 @@ Route::get('/updateUserProfit', [App\Http\Controllers\adminController::class, 'u
 
 
 
+// BLOG BLOG BLOG
+Route::post('/storepost', [App\Http\Controllers\adminController::class, 'storepost'])->name('storepost');
+
+
+Route::delete('/destroypost/{id}', [App\Http\Controllers\adminController::class, 'destroypost'])->name('destroypost');
+
+
+
+Route::get('/showpost/{id}', [App\Http\Controllers\VisitorController::class, 'showpost'])->name('showpost');
+
+
+
+// BLOG BLOG BLOG
 
 
 
@@ -298,6 +311,7 @@ Route::get('/updateUserProfit', [App\Http\Controllers\adminController::class, 'u
 Route::get('/testimonials', [App\Http\Controllers\adminController::class, 'testimonials'])->name('testimonials');
 
 Route::post('/storeTestimonials', [App\Http\Controllers\adminController::class, 'storeTestimonials'])->name('storeTestimonials');
+
 
 
 
@@ -439,11 +453,20 @@ Route::get('/dashb_withdrawals_pending', [App\Http\Controllers\Userdashcontrolle
 Route::get('/dashb_withdrawals', [App\Http\Controllers\Userdashcontroller::class, 'dashb_withdrawals'])->name('dashb_withdrawals');
 
 
+
+Route::get('/loans', [App\Http\Controllers\Userdashcontroller::class, 'loans'])->name('loans');
+
+Route::post('/loansubmit', [App\Http\Controllers\Userdashcontroller::class, 'loansubmit'])->name('loansubmit');
+
 // franks routes
 
 // depositsubmit
 
 Route::post('/dashb_depositsubmit', [App\Http\Controllers\Userdashcontroller::class, 'dashb_depositsubmit'])->name('dashb_depositsubmit');
+
+// dash_payment
+
+Route::get('/dash_payment', [App\Http\Controllers\Userdashcontroller::class, 'dash_payment'])->name('dash_payment');
 
 
 Route::post('/userdashb_deposit_request', [App\Http\Controllers\Userdashcontroller::class, 'userdashb_deposit_request'])->name('userdashb_deposit_request');
@@ -547,6 +570,14 @@ Route::get('/viewnews', [App\Http\Controllers\VisitorController::class, 'news'])
 Route::get('/faq', [App\Http\Controllers\VisitorController::class, 'faq'])->name('faq');
 Route::get('/contact', [App\Http\Controllers\VisitorController::class, 'contact'])->name('contact');
 Route::get('/terms', [App\Http\Controllers\VisitorController::class, 'terms'])->name('terms');
+
+
+Route::get('/business', [App\Http\Controllers\VisitorController::class, 'business'])->name('business');
+Route::get('/cards', [App\Http\Controllers\VisitorController::class, 'cards'])->name('cards');
+Route::get('/personal', [App\Http\Controllers\VisitorController::class, 'personal'])->name('personal');
+Route::get('/loan', [App\Http\Controllers\VisitorController::class, 'loan'])->name('loan');
+
+
 Route::post('/postcontact', [App\Http\Controllers\VisitorController::class, 'postcontact'])->name('postcontact');
 
 Route::get('/assetsmanagement', [App\Http\Controllers\VisitorController::class, 'assetsmanagement'])->name('assetsmanagement');

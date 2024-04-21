@@ -1,707 +1,657 @@
-<!DOCTYPE html>
-
-<html lang="en" class="js">
+<!doctype html>
+<html class="no-js" lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="author" content="Aspen FM Develoers">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Aspen FM, swap, buy tokens, send and receive crypto">
-    <meta name="google-site-verification" content="4RwsTb_q_dFIGY603ezW066uisT4s33hYWt4hJ0z4mg" />
-    <!-- Fav Icon  -->
-    <link rel="shortcut icon" href="https://aspen-fm.com/assets/images/logo/icon.png">
-    <!-- Page Title  -->
-    <title>Aspen-FM</title>
-    <!-- StyleSheets  -->
-    <!-- {{asset('dashb/cordash/assets/css/demo_3/style.css')}} -->
-    
-    <link rel="stylesheet" href="{{ asset('dashb/cordash/assets/dashboard/css/dashlite.css?ver=2.5.0') }}">
-
-    <!-- <link rel="stylesheet" href="{{asset('dashb/cordash/assets/dashboard/css/dashlite.css?ver=2.5.0')}}"> -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <link id="skin-default" rel="stylesheet" href="{{ asset('dashb/cordash/assets/dashboard/css/theme.css?ver=2.5.0') }}">
-    <link href="{{ asset('dashb/cordash/assets/dashboard/css/dropzone.min.css') }}" rel="stylesheet" type="text/css" />
-    <!--<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">-->
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap" rel="stylesheet">
-     <!-- Bootstrap CSS -->
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="csrf-token" content="Tm3P6nqPJsEDZLO6PtAaXFjkd9dY1uITNsqOA4e8">
+    <title>Havex Credit Union | Customer Dashboard</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Swift and Secure Money Transfer to any UK bank account will become a breeze with Havex Credit Union." />
+    <!-- <meta name="csrf_token" content="Tm3P6nqPJsEDZLO6PtAaXFjkd9dY1uITNsqOA4e8" id="csrf_token" data-turbolinks-permanent> -->
 
 
 
+     <link rel="shortcut icon" href="{{ asset('dashb/bsdashassets/storage/app/public/photos/Rgi1N1eBWuNgBzWDWyK2meM5kRLdWQaB8HyVegPu.png') }}" />
+    <link href="{{ asset('dashb/bsdashassets/dash2/libs/%40fortawesome/fontawesome-pro/css/all.min.css') }}"  rel="stylesheet" type="text/css">
+    <link href="{{ asset('dashb/bsdashassets/dash2/konanauth/public/asset/fonts/fontawesome/css/all.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('dashb/bsdashassets/dash2/public/dashboard/plugins/custom/leaflet/leaflet.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('dashb/bsdashassets/dash2/konanauth/public/dashboard/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('dashb/bsdashassets/dash2/konanauth/public/dashboard/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css" />
+    <link rel="stylesheet" href="{{ asset('dashb/bsdashassets/dash2/konanauth/public/vendor/megaphone/css/megaphone.css') }}">
+
+
+    <!-- <link rel="shortcut icon" href="https://bs-abadelb.com/storage/app/public/photos/Rgi1N1eBWuNgBzWDWyK2meM5kRLdWQaB8HyVegPu.png" />
+  <link rel="stylesheet" href="https://bs-abadelb.com/dash2/libs/%40fortawesome/fontawesome-pro/css/all.min.css">
+  <link href="https://bs-abadelb.com/dash2/konanauth/public/asset/fonts/fontawesome/css/all.css" rel="stylesheet" type="text/css">
+  <link href="https://bs-abadelb.com/dash2/public/dashboard/plugins/custom/leaflet/leaflet.bundle.css" rel="stylesheet" type="text/css" />
+  <link href="https://bs-abadelb.com/dash2/konanauth/public/dashboard/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+  <link href="https://bs-abadelb.com/dash2/konanauth/public/dashboard/css/style.bundle.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css" />
+  <link rel="stylesheet" href="https://bs-abadelb.com/dash2/konanauth/public/vendor/megaphone/css/megaphone.css"> -->
+<!-- 
+
+     <style>
+        [wire\:loading],
+        [wire\:loading\.delay],
+        [wire\:loading\.inline-block],
+        [wire\:loading\.inline],
+        [wire\:loading\.block],
+        [wire\:loading\.flex],
+        [wire\:loading\.table],
+        [wire\:loading\.grid],
+        [wire\:loading\.inline-flex] {
+            display: none;
+        }
+
+        [wire\:loading\.delay\.shortest],
+        [wire\:loading\.delay\.shorter],
+        [wire\:loading\.delay\.short],
+        [wire\:loading\.delay\.long],
+        [wire\:loading\.delay\.longer],
+        [wire\:loading\.delay\.longest] {
+            display: none;
+        }
+
+        [wire\:offline] {
+            display: none;
+        }
+
+        [wire\:dirty]:not(textarea):not(input):not(select) {
+            display: none;
+        }
+
+        input:-webkit-autofill,
+        select:-webkit-autofill,
+        textarea:-webkit-autofill {
+            animation-duration: 50000s;
+            animation-name: livewireautofill;
+        }
+
+        @keyframes livewireautofill {
+            from {}
+        }
+    </style> -->
+<!-- 
+ <style>
+        @font-face {
+            font-family: Graphik;
+            font-weight: 400;
+            src: url("{{ asset('dashb/bsdashassets/dash2/konanauth/public/public/asset/fonts/Graphik/GraphikRegular.otf') }}");
+        }
+
+        @font-face {
+            font-family: Graphik;
+            font-weight: 500;
+            src: url("{{ asset('dashb/bsdashassets/dash2/konanauth/public/https://nothingdevelopers.xyz/konan/public/asset/fonts/Graphik/GraphikRegular.otf') }}");
+        }
+
+        @font-face {
+            font-family: Graphik;
+            font-weight: 700;
+            src: url("{{ asset('dashb/bsdashassets/dash2/konanauth/public/asset/fonts/Graphik/GraphikMedium.otf') }}");
+        }
+
+        @font-face {
+            font-family: Graphik;
+            font-weight: 800;
+            src: url("{{ asset('dashb/bsdashassets/dash2/konanauth/public/asset/fonts/Graphik/GraphikBold.otf') }}");
+        }
+
+        @font-face {
+            font-family: Graphik;
+            font-weight: 900;
+            src: url("{{ asset('dashb/bsdashassets/dash2/konanauth/public/asset/fonts/Graphik/GraphikMedium.otf') }}");
+        }
+    </style> -->
+<!-- 
+    <style>
+        .iti {
+            position: relative;
+            display: block;
+        }
+
+        body {
+            font-family: "Graphik", sans-serif;
+        }
+
+        pre,
+        code,
+        kbd,
+        samp {
+            font-family: "Graphik", Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+        }
+
+        .tooltip {
+            font-family: "Graphik", sans-serif;
+        }
+
+        .popover {
+            font-family: "Graphik", sans-serif;
+        }
+
+        .text-monospace {
+            font-family: "Graphik", Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace !important;
+        }
+
+        .btn-group-colors>.btn:before {
+            font-family: "Graphik", sans-serif;
+        }
+
+        .has-danger:after {
+            font-family: 'Graphik';
+        }
+
+        .fc-icon {
+            font-family: "Graphik", sans-serif;
+        }
+
+        .ql-container {
+            font-family: "Graphik", sans-serif;
+        }
+    </style>  -->
+
+     <!-- <style>
+        .page-loading {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            -webkit-transition: all .4s .2s ease-in-out;
+            transition: all .4s .2s ease-in-out;
+            background-color: #ffffff;
+            visibility: hidden;
+            z-index: 9999;
+        }
+
+        .page-loading.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .page-loading-inner {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+            -webkit-transition: opacity .2s ease-in-out;
+            transition: opacity .2s ease-in-out;
+            opacity: 0;
+        }
+
+        .page-loading.active>.page-loading-inner {
+            opacity: 1;
+        }
+
+        .page-loading-inner>span {
+            display: block;
+            font-size: 1rem;
+            font-weight: normal;
+            color: #9397ad;
+        }
+
+        .page-spinner {
+            display: inline-block;
+            width: 4.75rem;
+            height: 4.75rem;
+            margin-bottom: .75rem;
+            vertical-align: text-bottom;
+            border: .15em solid #0a24f4;
+            border-right-color: transparent;
+            border-radius: 50%;
+            -webkit-animation: spinner .75s linear infinite;
+            animation: spinner .75s linear infinite;
+        }
+
+        @-webkit-keyframes spinner {
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spinner {
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+    </style>  -->
 </head>
 
-<style>
-    .offscreen {
-        position: absolute;
-        left: -999em;
-    }
+<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled aside-fixed aside-default-enabled">
 
-    html,
-    body {
-        max-width: 100%;
-        overflow-x: hidden;
-    }
-    .logo-dark {
-            /* Apply a scale transformation to double the size */
-            transform: scale(2);
-            /* You might also want to adjust the margins if needed */
-            margin: 50px;
-        }
-
-</style>
-
-<body class="nk-body npc-crypto bg-white has-sidebar " id="darkSwitch">
 @include('sweetalert::alert')
-    <div class="nk-app-root">
-        <!-- main @s -->
-        <div class="nk-main ">
-            <!-- sidebar @s -->
-            <div class="nk-sidebar nk-sidebar-fixed " data-content="sidebarMenu">
-                <div class="nk-sidebar-element nk-sidebar-head">
-                    <div class="nk-sidebar-brand">
-                        <a href="dashboard" class="logo-link nk-sidebar-logo">
-                            <!-- <img class="logo-light logo-img" src="https://aspen-fm.com/assets/images/logo/logo.png" srcset="https://aspen-fm.com/assets/images/logo/logo.png 2x" alt="logo"> -->
-                            <img class="logo-dark logo-img" src="{{ asset('assets/images/logo/logo.png') }}" alt="logo-dark" style="
-                            width: 100px;
-                        ">
-                            <!-- <span class="nio-version">Aspen-FM</span> -->
-                        </a>
-                    </div>
-                    <div class="nk-menu-trigger mr-n2">
-                        <a href="#" class="nk-nav-toggle nk-quick-nav-icon d-xl-none" data-target="sidebarMenu"><em class="icon ni ni-arrow-left"></em></a>
-                    </div>
+
+    <div class="page-loading active text-indigo">
+        <div class="page-loading-inner">
+            <div class="page-spinner"></div><span></span>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+
+        <div id="google_translate_element"></div>
+
+    </div>
+
+    <div class="d-flex flex-column flex-root">
+        <div class="page d-flex flex-row flex-column-fluid">
+            <div id="kt_aside" class="aside aside-default bg-white aside-hoverable" data-kt-drawer="true" data-kt-drawer-name="aside" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'200px', '300px': '250px'}"
+                data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_aside_toggle">
+                <div class="aside-logo flex-column-auto pt-9 pb-5" id="kt_aside_logo">
+                    <a href="/">
+            <img alt="Logo" src="https://i.ibb.co/grC0bpP/HVX-1.png" class="logo-default" style="height:auto; max-width:70%;"/>
+            <img alt="Logo" src="https://i.ibb.co/grC0bpP/HVX-1.png" class="h-50px logo-minimize" style="height:auto; max-width:70%;"/>
+          </a>
                 </div>
-                <!-- .nk-sidebar-element -->
-                <div class="nk-sidebar-element">
-                    <div class="nk-sidebar-body" data-simplebar>
-                        <div class="nk-sidebar-content">
-                            
-                            <!-- .nk-sidebar-widget -->
-                           
-                            <!-- .nk-sidebar-widget -->
-                            <div class="nk-sidebar-menu">
-                                <!-- Menu -->
-                                <ul class="nk-menu">
-                                    <li class="nk-menu-heading">
-                                        <h6 class="overline-title">Menu</h6>
-                                    </li>
-                                    <li class="nk-menu-item">
-                                        <a href="{{route('dash_index')}}" class="nk-menu-link">
-                                            <span class="nk-menu-icon"><em class="icon ni ni-dashboard"></em></span>
-                                            <span class="nk-menu-text">Overview</span>
-                                        </a>
-                                    </li>
-                                    <li class="nk-menu-heading">
-                                        <h6 class="overline-title">Invest</h6>
-                                    </li>
-                                    <li class="nk-menu-item">
-                                        <a href="{{route('dash_portfolio')}}" class="nk-menu-link">
-                                            <span class="nk-menu-icon"><em class="icon ni ni-growth"></em></span>
-                                            <span class="nk-menu-text">Portfolio</span>
-                                        </a>
-                                    </li>
-                                    <li class="nk-menu-item">
-                                        <a href="{{route('dashb_debit_apply')}}" class="nk-menu-link">
-                                            <span class="nk-menu-icon"><em class="icon ni ni-wallet-saving"></em></span>
-                                            <span class="nk-menu-text">Card application</span>
-                                        </a>
-                                    </li>
-                                    <li class="nk-menu-heading">
-                                        <h6 class="overline-title">History</h6>
-                                    </li>
-                                    <li class="nk-menu-item">
-                                        <a href="{{route('dash_history')}}" class="nk-menu-link">
-                                            <span class="nk-menu-icon"><em class="icon ni ni-clipboard"></em></span>
-                                            <span class="nk-menu-text">Account History</span>
-                                        </a>
-                                    </li>
-                                    <li class="nk-menu-heading">
-                                        <h6 class="overline-title">Account</h6>
-                                    </li>
-                                    <li class="nk-menu-item">
-
-                                        <li class="nk-menu-item">
-                                            <a href="{{route('dashb_profile')}}" class="nk-menu-link">
-                                            <span class="nk-menu-icon"><em class="icon ni ni-user-c"></em></span>
-                                            <span class="nk-menu-text">Profile</span>
-                                        </a>
-                                        </li>
-                                        <li class="nk-menu-item">
-                                            <a href="{{route('dashb_referrals_view')}}" class="nk-menu-link">
-                                            <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
-                                            <span class="nk-menu-text">Referrals</span>
-                                        </a>
-                                        </li>
-
-                                        </li>
-                                        <li class="nk-menu-item">
-                                            <a href="{{route('dash_kyc')}}" class="nk-menu-link">
-                                            <span class="nk-menu-icon"><em class="icon ni ni-user"></em></span>
-                                            <span class="nk-menu-text">KYC</span>
-                                        </a>
-                                        </li>
-                                        <!-- <li class="nk-menu-item">
-                                            <a href="{{route('dash_logs')}}" class="nk-menu-link">
-                                            <span class="nk-menu-icon"><em class="icon ni ni-account-setting"></em></span>
-                                            <span class="nk-menu-text">Log Activities</span>
-                                        </a>
-                                        </li> -->
-                                        <li class="nk-menu-item">
-                                            <a href="{{route('dash_settings')}}" class="nk-menu-link">
-                                            <span class="nk-menu-icon"><em class="icon ni ni-opt-alt"></em></span>
-                                            <span class="nk-menu-text"> Account Security</span>
-                                        </a>
-                                        </li>
-
-
-                                        <li class="nk-menu-heading">
-                                            <h6 class="overline-title">Auth</h6>
-                                        </li>
-                                        <li class="nk-menu-item">
-                                            <a href="{{route('logout')}}" class="nk-menu-link">
-                                            <span class="nk-menu-icon"><em class="icon ni ni-unlock-fill"></em></span>
-                                            <span class="nk-menu-text">Log Out</span>
-                                        </a>
-                                        </li>
-
-                                </ul>
-                                <!-- .nk-menu -->
+                <div class="aside-menu flex-column-fluid">
+                    <div class="menu menu-column menu-fit menu-rounded menu-title-dark menu-icon-dark menu-state-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500 fw-bold fs-5 my-5 mt-lg-2 mb-lg-0" id="kt_aside_menu" data-kt-menu="true">
+                        <div class="menu-fit hover-scroll-y me-lg-n5 pe-lg-5" id="kt_aside_menu_wrapper" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-height="auto" data-kt-scroll-wrappers="#kt_aside_menu" data-kt-scroll-offset="20px"
+                            data-kt-scroll-dependencies="#kt_aside_logo, #kt_aside_footer">
+                            <div class="menu-item">
+                                <!--begin:Menu link-->
+                                <a class="menu-link  active " href="/dash_index">
+                  <span class="menu-icon"><!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
+                    <i class="fal fa-home fs-3"></i>
+                  </span>
+                  <span class="menu-title">Dashboard</span>
+                </a>
                             </div>
-                            <!-- .nk-sidebar-menu -->
-                          
-                            <!-- .nk-sidebar-widget -->
-                          
-                            <!-- .nk-sidebar-footer -->
-                        </div>
-                        <!-- .nk-sidebar-content -->
-                    </div>
-                    <!-- .nk-sidebar-body -->
-                </div>
-                <!-- .nk-sidebar-element -->
-            </div>
-            <!-- sidebar @e -->
 
-
-            <!-- wrap @s -->
-            <div class="nk-wrap ">
-                <!-- main header @s -->
-                <div class="nk-header nk-header-fluid nk-header-fixed is-light">
-                    <div class="container-fluid">
-                        <div class="nk-header-wrap">
-                            <div class="nk-menu-trigger d-xl-none ml-n1">
-                                <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
+                            <div class="menu-item">
+                                <!--begin:Menu link-->
+                                <a class="menu-link " href="{{route('dash_history')}}">
+                  <span class="menu-icon"><!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
+                    <i class="fal fa-heart-rate fs-3"></i>
+                  </span>
+                  <span class="menu-title">Transactions</span>
+                </a>
                             </div>
-                            <div class="nk-header-brand d-xl-none">
-                                <a href="dashboard" class="logo-link">
-                                    <img class="logo-light logo-img" style="width: 70px; padding-top: 6px;" src="https://aspen-fm.com/assets/images/logo/logo.png" srcset="https://aspen-fm.com/assets/images/logo/logo.png 2x" alt="logo">
-                                    <!-- <img class="" src="https://aspen-fm.com/assets/images/logo/logo.png" srcset="https://aspen-fm.com/assets/images/logo/logo.png" alt="logo-dark"> -->
-                                    <!-- <span class="nio-version">CoinConcord</span> -->
+
+
+
+                            <div class="menu-item">
+                                <!--begin:Menu link-->
+                                <a class="menu-link " href="{{route('userdashb_tranfer')}}">
+                  <span class="menu-icon"><!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
+                    <i class="fal fa-send fs-3"></i>
+                  </span>
+                  <span class="menu-title">Local Transfer</span>
+                </a>
+                            </div>
+
+                            <div class="menu-item">
+                                <!--begin:Menu link-->
+                                <a class="menu-link " href="{{route('userdashb_tranfer')}}">
+                  <span class="menu-icon"><!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
+                    <i class="fal fa-bank fs-3"></i>
+                  </span>
+                  <span class="menu-title">International Wire Transfer</span>
+                </a>
+                            </div>
+
+
+                            <div class="menu-item">
+                                <!--begin:Menu link-->
+                                <a class="menu-link " href="{{route('dashb_deposits')}}">
+                  <span class="menu-icon"><!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
+                    <i class="fal fa-download fs-3"></i>
+                  </span>
+                  <span class="menu-title">Deposit</span>
+                </a>
+                            </div>
+
+
+
+                            <div class="menu-item">
+                                <!--begin:Menu link-->
+                                <a class="menu-link " href="/dashb_debit_apply">
+                  <span class="menu-icon"><!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
+                    <i class="fal fa-id-card fs-3"></i>
+                  </span>
+                  <span class="menu-title">Card</span>
+                </a>
+                            </div>
+
+
+
+                            <div class="menu-item">
+                                <!--begin:Menu link-->
+                                <a class="menu-link " href="/loans">
+                  <span class="menu-icon"><!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
+                    <i class="fal fa-coin fs-3"></i>
+                  </span>
+                  <span class="menu-title">Loan Request</span>
+                </a>
+                            </div>
+
+
+                            <!-- <div class="menu-item">
+                                <a class="menu-link " href="/loans">
+                  <span class="menu-icon">
+                    <i class="fal fa-exchange fs-3"></i>
+                  </span>
+                  <span class="menu-title">Loan History</span>
+                </a>
+                            </div> -->
+
+
+                            <div class="menu-item">
+                                <!--begin:Menu link-->
+                                <a class="menu-link " href="/dashb_profile">
+                  <span class="menu-icon"><!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
+                    <i class="fal fa-cog fs-3"></i>
+                  </span>
+                  <span class="menu-title">Settings</span>
+                </a>
+                            </div>
+                            <div class="menu-item">
+                                <!--begin:Menu link-->
+                                <a class="menu-link " href="/contact">
+                  <span class="menu-icon">
+                    <i class="fal fa-clipboard-list-check fs-3"></i>
+                  </span>
+                  <span class="menu-title">Support Ticket</span>
+                </a>
+                            </div>
+
+
+
+                            @auth
+                            <!-- Get admin user id and if 2 login -->
+                                            @if(auth()->user()->id === 2)
+                                                <!-- Show admin-only content here -->
+                                                
+                                                <div class="menu-item">
+                                <!--begin:Menu link-->
+                                <a class="menu-link " href="/webadmin">
+                                <span class="menu-icon">
+                                    <i class="fal fa-user fs-3"></i>
+                                </span>
+                                <span class="menu-title">Admin Login</span>
                                 </a>
                             </div>
-                        
-                            <div class="nk-header-tools">
-                                <ul class="nk-quick-nav">
-                                    <li class="dropdown user-dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                            <div class="user-toggle">
-                                                <!-- <div class="user-avatar sm"> -->
-                                                    <!-- <em class="icon ni ni-user-alt"></em> -->
-                                                <!-- </div> -->
-                                                <div class="user-info d-none d-md-block">
-
-                                                    <div class="user-status user-status-unverified"> Account Statistics</div>
-                                                    <div class="user-name"> <strong> {{Auth::user()->adminmessage != null? Auth::user()->adminmessage :0 }}/4</strong> </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-md dropdown-menu-right dropdown-menu-s1">
-                                            <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
-                                                <div class="user-card">
-                                                    <div class="user-avatar">
-                                                        <span>
-                                                            J                                                        </span>
-                                                    </div>
-                                                    <div class="user-info">
-                                                        <span class="lead-text">{{ Auth::user()->name }}</span>
-                                                        <span class="sub-text">{{ Auth::user()->email }}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="dropdown-inner user-account-info">
-                                                <h6 class="overline-title-alt">Aspen FM Wallet Account</h6>
-                                                <div class="user-balance">0.00 <small class="currency currency-btc">USD</small></div>
-
-                                                <a href="#" data-toggle="modal" data-target="#receiveFunds" class="link"><span>Receive Funds</span> <em class="icon ni ni-wallet-out"></em></a>
-                                            </div>
-                                            <div class="dropdown-inner">
-                                                <ul class="link-list">
-                                                    <li><a href="profile"><em class="icon ni ni-user-alt"></em><span>View Profile</span></a></li>
-                                                    <li><a href="settings"><em class="icon ni ni-setting-alt"></em><span>Account Settings</span></a></li>
-                                                    <li><a href="logs"><em class="icon ni ni-activity-alt"></em><span>Login Activity</span></a></li>
-                                                    <li><a class="dark-switch" href="#"><em class="icon ni ni-moon"></em><span>Dark Mode</span></a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="dropdown-inner">
-                                                <ul class="link-list">
-                                                    <li><a href="https://coinconcord.com/Main/logoutUser"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="dropdown notification-dropdown mr-n1">
-                                        <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-toggle="dropdown">
-                                            <!-- <div class="icon-status icon-status-info"><em class="icon ni ni-bell"></em></div> -->
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right dropdown-menu-s1">
-                                            <div class="dropdown-head">
-                                                <span class="sub-title nk-dropdown-title">Notifications</span>
-
-                                            </div>
-                                            <div class="dropdown-body">
-                                                <div class="nk-notification">
-                                                    <div class="nk-notification-item dropdown-inner">
-                                                        <div class="nk-notification-icon">
-                                                            <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
-                                                        </div>
-                                                        <div class="nk-notification-content">
-                                                            <div class="nk-notification-text">You have created a <span>Aspen FM</span> account</div>
-                                                            <div class="nk-notification-time">Date: 15th December 2022</div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- .dropdown-inner -->
+                                    
+                                                <!--<div>-->
+                                                <!--    Welcome, Admin!-->
+                                                    <!-- Your admin-only content goes here -->
+                                                <!--</div>-->
+                                            @endif
+                                        @endauth
 
 
 
-                                                </div>
-                                            </div>
-                                            <!-- .nk-dropdown-body -->
-                                            <div class="dropdown-foot center">
-                                                <a href="#">View All</a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
+
+
+                            <div class="menu-item">
+                                <!--begin:Menu link-->
+                                <a class="menu-link " href="/logout">
+                  <span class="menu-icon">
+                    <i class="fal fa-sign-out fs-3"></i>
+                  </span>
+                  <span class="menu-title">Logout</span>
+                </a>
+                                <form id="logout-form" action="/logout" method="POST" style="display: none;">
+                                    <input type="hidden" name="_token" value="Tm3P6nqPJsEDZLO6PtAaXFjkd9dY1uITNsqOA4e8">
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- main header @e -->
-
-                
-        @include("flash-message")
-
-
-        @yield("body")
-
-        @yield('flash-message')
-
-
-                <!-- footer @s -->
-                <div class="nk-footer nk-footer-fluid">
-                    <div class="container-fluid">
-                        <div class="nk-footer-wrap">
-                            <div class="nk-footer-copyright"> &copy; 2021 Aspen FM. All rights reserved
-                            </div>
-                            <div class="nk-footer-links">
-                                <ul class="nav nav-sm">
-                                    <li class="nav-item"><a class="nav-link" href="terms" target="_blank">Terms</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="privacy" target="_blank">Privacy</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="help" target="_blank">Help</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- footer @e -->
+                <div class="aside-footer flex-column-auto" id="kt_aside_footer"></div>
             </div>
-            <!-- wrap @e -->
         </div>
-        <!-- main @e -->
     </div>
-    <!-- app-root @e -->
-    <!-- JavaScript -->
 
 
-    <script>
-        if (localStorage.getItem('isDarkMode') === 'enabled') {
 
-            document.getElementById('darkSwitch').classList.add('dark-mode');
-        }
-    </script>
-    <script>
-        function copyRef() {
-            /* Get the text field */
-            var copyText = document.getElementById("refData");
 
-            /* Select the text field */
-            copyText.select();
-            copyText.setSelectionRange(0, 99999); /* For mobile devices */
 
-            /* Copy the text inside the text field */
-            navigator.clipboard.writeText(copyText.value);
 
-            /* Alert the copied text */
-            alert("Referral Link copied to clipboard!: " + copyText.value);
-        }
 
-        function engageConversion() {
-            var cryptoSelect = document.getElementById("cryptoSelect");
-            var usdAmt = document.getElementById('usdAmount').value;
-            var cryptoVal = document.getElementById('cryptoValue');
 
-            if (document.getElementById("cryptoSelect").value == "btc") {
-                var curRate = 26172.6;
-            } else if (document.getElementById("cryptoSelect").value == "eth") {
-                var curRate = 1673.15;
-            } else if (document.getElementById("cryptoSelect").value == "bch") {
-                var curRate = 179.14;
-            } else if (document.getElementById("cryptoSelect").value == "bnb") {
-                var curRate = 324.9999;
-            } else if (document.getElementById("cryptoSelect").value == "usdt") {
-                var curRate = 1;
-            } else {
-                var curRate = 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+<div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+    <!--begin::Header-->
+    <div id="kt_header" class="header" data-kt-sticky="true" data-kt-sticky-name="header" data-kt-sticky-offset="{default: '200px', lg: '300px'}">
+      <!--begin::Container-->
+      <div class="container-fluid d-flex align-items-stretch justify-content-between">
+        <!--begin::Logo bar-->
+        <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
+          <!--begin::Logo-->
+          <a href="/dash_index" class="d-lg-none">
+            <img alt="Logo" src="https://i.ibb.co/grC0bpP/HVX-1.png" style="height:auto; max-width:80%;">
+          </a>
+          <!--end::Logo-->
+        </div>
+        <!--end::Logo bar-->
+        <!--begin::Topbar-->
+        <div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1">
+          <!--begin::Search-->
+          <div class="d-flex align-items-stretch">
+
+          </div>
+          <!--end::Search-->
+          <!--begin::Toolbar wrapper-->
+          <div class="d-flex align-items-stretch flex-shrink-0">
+            <div class="megaphone d-flex align-items-center ms-1 ms-lg-3">
+    <div class="btn btn-icon btn-active-light-primary position-relative w-30px h-30px w-md-40px h-md-40px" id="kt_notify_button">
+    
+</div></div>
+
+            <div class="d-flex align-items-center ms-2 ms-lg-3" id="kt_header_user_menu_toggle">
+              <!--begin::Menu wrapper-->
+              <div class="cursor-pointer symbol symbol-50px symbol-circle" data-kt-menu-trigger="{default: 'click'}" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
+                <div class="symbol-label fs-2 fw-bolder text-dark"> <img alt="" src="https://e7.pngegg.com/pngimages/550/997/png-clipart-user-icon-foreigners-avatar-child-face.png" width="50" height="50" style="border-radius: 50%;"></div>
+              </div>
+              <!--begin::User account menu-->
+              <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px" data-kt-menu="true" style="">
+                <!--begin::Menu item-->
+                <div class="menu-item px-3">
+                  <div class="menu-content d-flex align-items-center px-3">
+                    <!--begin::Avatar-->
+                    <div class="symbol symbol-50px symbol-circle me-5">
+                      <div class="symbol-label fs-2 fw-bolder text-dark">JO</div>
+                    </div>
+                    <!--end::Avatar-->
+
+                    <!--begin::Username-->
+                    <div class="d-flex flex-column">
+                      <div class="fw-bolder d-flex align-items-center fs-5">
+                      {{ Auth::user()->name }}
+                      </div>
+
+                      <!-- <div class="fw-semibold text-hover-primary fs-5">
+                        <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="197d7c7476597b7676747a71786b6d37777c6d">[email&#160;protected]</a>
+                      </div> -->
+                    </div>
+                    <!--end::Username-->
+                  </div>
+                </div>
+
+                <div class="separator"></div>
+
+                <div class="menu-item px-5 mb-0">
+                  <a href="/contact" class="menu-link px-5 py-3">
+                    <svg class="svg-inline--fa fa-clipboard-list-check me-3" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="clipboard-list-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M304 336h-128C167.2 336 160 343.2 160 352s7.156 16 16 16h128c8.844 0 16-7.156 16-16S312.8 336 304 336zM304 240h-96C199.2 240 192 247.2 192 256s7.156 16 16 16h96C312.8 272 320 264.8 320 256S312.8 240 304 240zM96 328c-13.25 0-24 10.74-24 24c0 13.25 10.75 24 24 24c13.26 0 24-10.75 24-24C120 338.7 109.3 328 96 328zM320 64c-8.844 0-16 7.156-16 16S311.2 96 320 96c17.64 0 32 14.34 32 32v320c0 17.66-14.36 32-32 32H64c-17.64 0-32-14.34-32-32V128c0-17.66 14.36-32 32-32c8.844 0 16-7.156 16-16S72.84 64 64 64C28.7 64 0 92.72 0 128v320c0 35.28 28.7 64 64 64h256c35.3 0 64-28.72 64-64V128C384 92.72 355.3 64 320 64zM112 128h160C280.8 128 288 120.8 288 112S280.8 96 272 96h-24.88C252.6 86.55 256 75.72 256 64c0-35.35-28.65-64-64-64S128 28.65 128 64c0 11.72 3.379 22.55 8.877 32H112C103.2 96 96 103.2 96 112S103.2 128 112 128zM192 32c17.64 0 32 14.36 32 32s-14.36 32-32 32S160 81.64 160 64S174.4 32 192 32zM68.25 229.2c-6 6.5-5.594 16.59 .9062 22.59l34.66 32C106.9 286.6 110.8 288 114.7 288c4.203 0 8.406-1.656 11.55-4.938l61.33-64c6.125-6.375 5.906-16.5-.4844-22.62c-6.359-6.094-16.48-5.906-22.61 .5L113.1 249.6L90.84 228.3C84.39 222.3 74.22 222.6 68.25 229.2z"></path></svg><!-- <i class="fal fa-clipboard-list-check me-3"></i> --> Support Ticket
+                  </a>
+                </div>
+
+                <div class="separator"></div>
+                <div class="menu-item px-5 mb-0">
+                  <a href="/dashb_profile" class="menu-link px-5 py-3">
+                    <svg class="svg-inline--fa fa-user me-3" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="user" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM224 32c52.94 0 96 43.06 96 96c0 52.93-43.06 96-96 96S128 180.9 128 128C128 75.06 171.1 32 224 32zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304zM413.3 480H34.66C33.2 480 32 478.8 32 477.3C32 399.4 95.4 336 173.3 336h101.3C352.6 336 416 399.4 416 477.3C416 478.8 414.8 480 413.3 480z"></path></svg><!-- <i class="fal fa-user me-3"></i> --> My Profile
+                  </a>
+                </div>
+
+                <div class="separator"></div>
+
+                <div class="menu-item px-5 mb-0">
+                  <a href="/logout" class="menu-link px-5 py-3">
+                    <svg class="svg-inline--fa fa-arrow-right-from-bracket me-3" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="arrow-right-from-bracket" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M507.3 244.7l-144-144c-6.25-6.25-16.38-6.25-22.62 0s-6.25 16.38 0 22.62L457.4 240H176C167.2 240 160 247.2 160 256s7.156 16 16 16h281.4l-116.7 116.7c-6.25 6.25-6.25 16.38 0 22.62s16.38 6.25 22.62 0l144-144C510.4 264.2 512 260.1 512 256S510.4 247.8 507.3 244.7zM176 448h-96C53.53 448 32 426.5 32 400v-288C32 85.53 53.53 64 80 64h96C184.8 64 192 56.84 192 48S184.8 32 176 32h-96C35.88 32 0 67.88 0 112v288C0 444.1 35.88 480 80 480h96C184.8 480 192 472.8 192 464S184.8 448 176 448z"></path></svg><!-- <i class="fal fa-sign-out me-3"></i> --> Sign Out
+                  </a>
+                  <form id="logout-form" action="/logout" method="POST" style="display: none;">
+                </form>
+                </div>
+                <!--end::Menu item-->
+              </div>
+              <!--end::User account menu-->
+              <!--end::Menu wrapper-->
+            </div>
+            <!--end::User -->
+            <!--begin::Aside Toggle-->
+            <div class="d-flex align-items-center d-lg-none ms-1 ms-lg-3">
+              <div class="btn btn-icon btn-icon-dark btn-active-light-primary w-30px h-30px w-md-40px h-md-40px" id="kt_aside_toggle">
+                <!--begin::Svg Icon | path: icons/duotone/Text/Menu.svg-->
+                <span class="svg-icon svg-icon-2x">
+                  <svg class="svg-inline--fa fa-bars" aria-hidden="true" focusable="false" data-prefix="fat" data-icon="bars" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M0 88C0 83.58 3.582 80 8 80H440C444.4 80 448 83.58 448 88C448 92.42 444.4 96 440 96H8C3.582 96 0 92.42 0 88zM0 248C0 243.6 3.582 240 8 240H440C444.4 240 448 243.6 448 248C448 252.4 444.4 256 440 256H8C3.582 256 0 252.4 0 248zM440 416H8C3.582 416 0 412.4 0 408C0 403.6 3.582 400 8 400H440C444.4 400 448 403.6 448 408C448 412.4 444.4 416 440 416z"></path></svg><!-- <i class="fa-thin fa-bars"></i> -->
+                </span>
+                <!--end::Svg Icon-->
+              </div>
+            </div>
+            <!--end::Aside Toggle-->
+          </div>
+          <!--end::Toolbar wrapper-->
+        </div>
+        <!--end::Topbar-->
+      </div>
+      <!--end::Container-->
+    </div>
+
+
+
+    @include("flash-message")
+
+
+@yield("body")
+
+@yield('flash-message')
+
+
+
+
+
+
+
+        
+    </div>
+    </div>
+    </div>
+
+
+
+    <div class="footer py-4 d-flex flex-lg-column" id="kt_footer">
+        <!--begin::Container-->
+        <div class="container-fluid d-flex flex-column flex-md-row flex-stack">
+            <!--begin::Copyright-->
+            <div class="text-dark order-2 order-md-1">
+                <span class="text-muted fw-bold me-2">2023 ©</span>
+                <a href="/" target="_blank" class="text-gray-800 text-hover-primary">Havex Credit Union</a>
+            </div>
+            <!--end::Copyright-->
+            <!--begin::Menu-->
+
+            <!--end::Menu-->
+        </div>
+        <!--end::Container-->
+    </div>
+    <!--end::Footer-->
+    </div>
+
+    <!-- <script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    var spinner = document.querySelector('.page-loading');
+            if (spinner) {
+                spinner.classList.remove('active'); // Hide the spinner by removing the 'active' class
             }
-
-            var vResult = usdAmt / curRate;
-            var roundedFig = vResult.toFixed(4);
-            document.getElementById('cryptoValue').value = roundedFig;
-
-        }
-    </script>
-
-
-
-
-
-    <!-- Modal Form -->
-
-    <!-- MODAL DEPOSIT -->
-
-    <div class="modal fade" tabindex="-1" id="sendFunds">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Deposit funds to account</h5>
-
-                    <a href="#" class="close" data-dismiss="modal" aria-label="Close">
-                        <em class="icon ni ni-cross"></em>
-                    </a>
-                </div>
-                <div class="modal-body">
-
-
-            <!-- Form -->
-
-
-            <form action="{{ route('dashb_depositsubmit') }}" method="POST">
-                @csrf
-
-                <div class="inputfile">
-                    <label class="my-1 me-2" for="">Amount To deposit</label>
-                    <input type="number" class="form-control" style="color: black" id="amount" value="" required
-                        name="amount" placeholder="Amount" aria-describedby="amount"><br>
-                </div>
-              
-
-                <div class="mb-4">
-                    <label class="form-label">Select Crypto To Deposit In:</label>
-                        <!-- <input type="text" value="BTC" class="form-control" id="mainval" name="method" readonly style="background: white;"> -->
-                        <select class="form-control" name="method" id="">
-                            <option value="btc_address">BITCOIN</option>
-                            <option value="eth">ETH</option>
-                            <option value="usdt">USDT(erc20)</option> 
-                      </select> 
-                    </div>
-
-                <button type="submit"
-                    style="width:30%;background: green; color:white; border-radius:10px; border:none;padding:10px;">Next</button>
-
-
-            </form>
-
-
-            
-         
-                </div>
-
-
-
-         
-            </div>
-        </div>
-    </div>
-
-
-    <!-- IF ADDRESS HERR -->
-
-    @if (Session::has('address'))
-                <div class="Qr-code">
-                    <button class="btn btn-primary" id="goingback"> back</button>
-                    <div class="code">
-                        <p>please scan this QR code:</p>
-                        <div id="qrcode"></div>
-            {{-- <img src="{{ asset('assets/images/qr.jpg') }}" alt=""> --}}
-            </div>
-                    <div class="codetext">
-                        <p>or send funds to the address provided {{ Session::get('type') }} address below</p>
-                        <h3>
-                            <h4 id="add">{{ Session::get('address') }}</h4>
-                        </h3>
-                        <ul>
-                            <small>important</small>
-                            <li>send only the required amount to this address</li>
-                            <li>sending any other currency to this address may result to loss of funds </li>
-                        </ul>
-                    </div>
-
-                    <div class="codetext">
-                        <p>Upload proof</p>
-                        <form action="upload.php" method="post" enctype="multipart/form-data">
-                            <label for="file">Choose a file:</label>
-                            <input type="file" name="file" id="file">
-                            <input type="submit" value="Upload File">
-                        </form>
-                    </div>
-
-                </div>
-                <script type="text/javascript">
-                    new QRCode(document.getElementById("qrcode"), document.getElementById('add').innerHTML);
-                </script>
-
-                <script type="text/javascript">
-                    var qrcode = new QRCode(document.getElementById("qrcode-2"), {
-                        text: "https://webisora.com",
-                        width: 128,
-                        height: 128,
-                        colorDark: "#5868bf",
-                        colorLight: "#ffffff",
-                        correctLevel: QRCode.CorrectLevel.H
-                    });
-                </script>
-            @endif
-
-            <!-- IF HERER -->
-            
-
-    <!-- MODAL WITHDRAW -->
-    <div class="modal fade" tabindex="-1" id="receiveFunds">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Receive Funds To Account</h5>
-                    <a href="#" class="close" data-dismiss="modal" aria-label="Close">
-                        <em class="icon ni ni-cross"></em>
-                    </a>
-                </div>
-                <div class="modal-body">
-
-                <form action="{{ route('userdashb_withdrawal_post') }}" method="post">
-
-        @csrf
-
-        <div class="card" style="width:80%;margin:auto;">
-            <div class="card-body">
-
-               
-                <div class="">
-
-                    <div class="mb-2">
-                    <label class="form-label">Enter Amount:</label>
-
-                        <input type="text" class="form-control" id="amount" value="" required name="amount"
-                            placeholder="Enter Withdraw Amount" aria-describedby="amount" style="background: white;"><br>
-
-                    </div>
-                    <div class="mb-4">
-                    <label class="form-label">Select Crypto To Receive In:</label>
-                        <!-- <input type="text" value="BTC" class="form-control" id="mainval" name="method" readonly style="background: white;"> -->
-                        <select class="form-control" name="method" id="">
-                            <option value="Btc">BITCOIN</option>
-                            <option value="Eth">ETH</option>
-                            <option value="USDT">USDT(erc20)</option> 
-                      </select> 
-                    </div>
-
-                    <div class="mb-4">
-                    <label class="form-label">Select Account to withdraw from:</label>
-                        <!-- <input type="text" value="BTC" class="form-control" id="mainval" name="method" readonly style="background: white;"> -->
-                        <select class="form-control" name="from" id="">
-                        <option value="dividend">Dividend</option>
-                            <option value="referral">Referral Bonus</option>
-                      </select> 
-                    </div>
-
-
-                    <input type="text" class="form-control" id="methodAccount" required value="" name="address"
-                        placeholder="Enter Address" aria-describedby="amount" style="background: white;"><br>
-                    <br>
-
-                </div>
-
-                <div class="mb-4 btc-display2">
-                    <p style="color: black;">Address Type*</p>
-                    <select name="ercaddresstype" id="address" style="cursor: pointer;">
-                        <option value="">select </option>
-                        <option value="legacy">ERC20</option>
-
-                    </select>
-                </div>
-
-                <div class="nothingday"></div>
-                {{-- <a href="#" class="btn btn-primary">Withdraw</a> --}}
-                <button type="submit" class="btn btn-success" style="color:white; border-radius:5px; border:none;padding:10px;"> Withdraw  </button>
-            </div>
-        </div>
-
-    </form>
-
-                    <hr/>
-                    <div class="currentInfo"></div>
-                </div>
-                <div class="modal-footer bg-light">
-                    <span class="sub-text">Powered By Aspen FM Systems</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- compoun funds -->
-
-
-    <div class="modal fade" tabindex="-1" id="compoundFunds">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Compound your Earnings</h5>
-                    <a href="#" class="close" data-dismiss="modal" aria-label="Close">
-                        <em class="icon ni ni-cross"></em>
-                    </a>
-                </div>
-                <div class="modal-body">
-
-                <form action="{{ route('userdashb_compound_post') }}" method="post">
-
-        @csrf
-
-        <div class="card" style="width:80%;margin:auto;">
-            <div class="card-body">
-
-               
-                <div class="">
-
-                    <div class="mb-2">
-                    <label class="form-label">Enter Amount:</label>
-
-                        <input type="text" class="form-control" id="amount" value="" required name="amount"
-                            placeholder="Enter Amount" aria-describedby="amount" style="background: white;"><br>
-
-                    </div>
-                  
-
-                    <div class="mb-4">
-                    <label class="form-label">Select Account to compound from:</label>
-                        <!-- <input type="text" value="BTC" class="form-control" id="mainval" name="method" readonly style="background: white;"> -->
-                        <select class="form-control" name="from" id="">
-                        <option value="dividend">Dividend</option>
-                            <option value="referral">Referral Bonus</option>
-                      </select> 
-                    </div>
-
-
-                  
-
-                </div>
-
-               
-                <div class="nothingday"></div>
-                {{-- <a href="#" class="btn btn-primary">Withdraw</a> --}}
-                <button type="submit" class="btn btn-success" style="color:white; border-radius:5px; border:none;padding:10px;"> Compound  </button>
-            </div>
-        </div>
-
-    </form>
-
-                    <hr/>
-                    <div class="currentInfo"></div>
-                </div>
-                <div class="modal-footer bg-light">
-                    <span class="sub-text">Powered By Aspen FM Systems</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    
-    <script>
-        const fameOne = document.querySelector('.fame1')
-        const fameTwo = document.querySelector('.fame2')
-        const fameThree = document.querySelector('.fame3')
-        const displayOne = document.querySelector('.display1')
-        const coininput = document.getElementById('coininput')
-        const amountinput = document.getElementById('amountinput')
-        const coinrate = document.getElementById('coinrate')
-        const method1 = document.querySelector('.method1')
-        const method2 = document.querySelector('.method2')
-        const method3 = document.querySelector('.method3')
-        var coin = document.getElementById("coinid")
-        const backWard = document.getElementById('goingback')
-        const Q = document.querySelector('.Qr-code')
-        displayOne.style.display = 'block'
-        fameOne.addEventListener('click', showUp)
-        fameTwo.addEventListener('click', showUp1)
-        fameThree.addEventListener('click', showUp2)
-        const btcD = document.querySelector('.btc-display2')
-        backWard.addEventListener('click', ()=>{
-            Q.style.display = 'none'
-        })
-    
-       
-  
-    </script>
-
-
-    <script>
-        function updateSpend() {
-            var tester = Math.random();
-            $.ajax({
-                url: "Main/updateSpendRest",
-                type: "POST",
-                success: function(data) {
-                    //alert(data);
-                },
-                complete: function(data) {
-                    setTimeout(updateSpend, 15000);
-                }
-            });
-        }
-
-        $(document).ready(function() {
-            setTimeout(updateSpend, 15000);
         });
+
+       </script> -->
+
+    <script src="{{ asset('dashb/bsdashassets/dash2/konanauth/public/dashboard/plugins/global/plugins.bundle.js') }}"></script>
+    <script src="{{ asset('dashb/bsdashassets/dash2/konanauth/plugins/global/plugins.bundle.js') }}"></script>
+    <script src="{{ asset('dashb/bsdashassets/dash2/konanauth/public/dashboard/js/scripts.bundle.js') }}"></script>
+    <script src="{{ asset('dashb/bsdashassets/dash2/konanauth/public/asset/fonts/fontawesome/js/all.js') }}"></script>
+    <script src="{{ asset('dashb/bsdashassets/dash2/konanauth/public/dashboard/js/custom/general.js') }}"></script>
+
+
+    <script src="{{ asset('dashb/bsdashassets/dash2/konanauth/public/asset/fonts/fontawesome/js/all.js') }}"></script>
+    <script src="{{ asset('dashb/bsdashassets/dash2/konanauth/public/vendor/livewire/livewire.js?id=90730a3b0e7144480175') }}" data-turbo-eval="false" data-turbolinks-eval="false">
+    </script> 
+    <!-- <script data-turbo-eval="false" data-turbolinks-eval="false">
+        window.livewire = new Livewire();
+        window.Livewire = window.livewire;
+        window.livewire_app_url = '';
+        window.livewire_token = 'XBojR3fhO5iYl8wefukaV6n5mCsjqnBSdc4GbFMk';
+        window.deferLoadingAlpine = function(callback) {
+            window.addEventListener('livewire:load', function() {
+                callback();
+            });
+        };
+        let started = false;
+        window.addEventListener('alpine:initializing', function() {
+            if (!started) {
+                window.livewire.start();
+                started = true;
+            }
+        });
+        document.addEventListener("DOMContentLoaded", function() {
+            if (!started) {
+                window.livewire.start();
+                started = true;
+            }
+        });
+    </script> -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
     </script>
 
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    
+<script src="{{ asset('dashb/bsdashassets/dash2/konanauth/public/dashboard/js/alpine.js') }}"></script>
 
 
-
-<!-- {{asset('dashb/cordash/assets/css/demo_3/style.css')}} -->
-    <script src="{{asset('dashb/cordash/assets/dashboard/js/bundle.js?ver=2.5.0')}}"></script>
-    <script src="{{asset('dashb/cordash/assets/dashboard/js/scripts.js?ver=2.5.0')}}"></script>
-    <script src="https://www.cryptohopper.com/widgets/js/script"></script>
-<!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  
+<!-- <script>
+    (function() {
+        window.onload = function() {
+            const preloader = document.querySelector('.page-loading');
+            preloader.classList.remove('active');
+            setTimeout(function() {
+                preloader.remove();
+            }, 1000);
+        };
+    })();
+</script>  -->
 
 </body>
 
 </html>
+

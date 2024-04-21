@@ -1,60 +1,69 @@
 @extends('dashblayout.dashlayout')
 
 @section('body')
-    <div class="container">
 
 
-    <div class="row">
-
-    <div class="col-md-6 mx-auto"  style="margin-top: 100px;">
-
-    
-    <div class="header mt-30">
-                    <h5 class="title">Deposit funds to account</h5>
-
-                    <a href="#" class="close" data-dismiss="modal" aria-label="Close">
-                        <em class="icon ni ni-cross"></em>
-                    </a>
-                </div>
-                <div class="">
 
 
-            <!-- Form -->
+        
+<div class="content fs-6 d-flex flex-column flex-column-fluid" id="kt_content">
+	<div>
+    </div>    	<div class="card-body text-wrap">
+	
+		
+<div class="post fs-6 d-flex flex-column-fluid min-vh-100" id="kt_post">
 
 
-            <form action="{{ route('dashb_depositsubmit') }}" method="POST">
-                @csrf
-
-                <div class="inputfile">
-                    <label class="my-1 me-2" for="">Amount To deposit</label>
-                    <input type="number" class="form-control" style="color: black" id="amount" value="" required
-                        name="amount" placeholder="Amount" aria-describedby="amount"><br>
-                </div>
-              
-
-                <div class="mb-4">
-                    <label class="form-label">Select Crypto To Deposit In:</label>
-                        <!-- <input type="text" value="BTC" class="form-control" id="mainval" name="method" readonly style="background: white;"> -->
-                        <select class="form-control" name="method" id="">
-                            <option value="btc_address">BITCOIN</option>
-                            <option value="eth">ETH</option>
-                            <option value="usdt">USDT(erc20)</option> 
-                      </select> 
-                    </div>
-
-                <button type="submit"
-                    style="width:30%;background: green; color:white; border-radius:10px; border:none;padding:10px;">Next</button>
+  <div class="container col-lg-8">
+  <div>
+    <h1> Deposit</h1>
+  </div>
 
 
-            </form>
+		<div class="card mb-10">
+		  <div class="card-body">
 
+      <form action="{{ route('dashb_depositsubmit') }}" method="POST">
+                @csrf 
+			  <div class="fv-row mb-6">
+				<label class="form-label fs-6 fw-bolder text-dark">Deposit From</label>
+				<select class="form-select form-select-solid" name="method" required="">
+                                        <option value="usdt">Bank Transfer</option>
+                                        <option value="btc_address">BITCOIN</option>
+                                        <!-- <option value="usdt">USDT(erc20)</option> -->
+                                      </select>
+													</div>
+								<div class="fv-row mb-6">
+									<label class="form-label fs-6 fw-bolder text-dark">Amount €</label>
+									<input class="form-control form-control-lg form-control-solid" type="text" name="amount" required="" placeholder="Enter amount €">
+								</div>
 
-            
-         
-    </div>
-
-    </div>
-    </div>
-
+							
+								<div class="text-center mt-10">
+									<button type="submit" class="btn btn-lg btn-primary btn-block fw-bolder me-3 my-2">
+										<span>Continue</span>
+										<!-- <span wire:loading wire:target="addTicket">Processing Request...</span> -->
+									</button>
+								</div>
+			</form>
+		  </div>
+	  
+	 
+	  </div>
+	</div>
+  </div>
 </div>
+</div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
 @endsection

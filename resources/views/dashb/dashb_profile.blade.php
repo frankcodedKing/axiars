@@ -1,5 +1,5 @@
 @extends('dashblayout.dashlayout')
-<style>
+<!-- <style>
     .flex{
         display: flex;
         justify-content: space-between;
@@ -51,8 +51,8 @@
     right: 45%;
     cursor: pointer;
 }
-}
-   /* .image-file{
+} -->
+   <!-- /* .image-file{
     position: absolute;
     color: red!important;
     width: 10px;
@@ -60,207 +60,206 @@
     color: red;
     background: red!important;
 
-   } */
+   } */ -->
    
 </style>
 @section('body')
 
-<div class="nk-content nk-content-fluid">
-                    <div class="container-xl wide-lg">
-                       <div class="kyc-app wide-sm m-auto">
+<div class="content fs-6 d-flex flex-column flex-column-fluid" id="kt_content">
+  <div wire:id="07JLZ1I8wtzQJVyhmJtD">
 
-                       <div class="nk-block-head-content text-center">
-                                        <h2 class="nk-block-title fw-normal">Profile Settings</h2>
-                                        <div class="nk-block-des">
-                                            <!-- <p>To comply with regulation each participant will have to go through indentity verification (KYC/AML) to prevent fraud causes. </p> -->
-                                        </div>
-                                    </div>
-                                  
-                                <div class="nk-block">
-                                <!-- <form action="https://coinconcord.com/Main/updateKYC" enctype="multipart/form-data" method="post" accept-charset="utf-8"> -->
-                                    <div class="card card-bordered">
-                                        <div class="nk-kycfm">
-                                            <div class="nk-kycfm-head">
-                                                <div class="nk-kycfm-count">01</div>
-                                                <div class="nk-kycfm-title">
-                                                    <h5 class="title">Personal Details</h5>
-                                                    <p class="sub-title">Your simple personal information required for identification</p>
-                                                </div>
-                                            </div><!-- nk-kycfm-head -->
-                                            <div class="nk-kycfm-content">
-                                                
+    <div><div>
+    </div>        <div class="toolbar" id="kt_toolbar">
+<div class="container-fluid d-flex flex-stack flex-wrap flex-sm-nowrap">
+<div class="d-flex flex-column align-items-start justify-content-center flex-wrap me-2">
+  <h1 class="text-dark fw-bolder my-1 fs-2 mb-6">Settings</h1>
+  <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6 border-gray-300" id="tabs-icons-text" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link text-dark  active " id="tabs-icons-text-1-tab" href="" role="tab" aria-controls="tabs-icons-text-1" aria-selected="true">Profile</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-dark " id="tabs-icons-text-2-tab" href="/dash_settings" role="tab" aria-controls="tabs-icons-text-2" aria-selected="false">Security</a>
+    </li>
+    
+    <li class="nav-item" data-bs-toggle="modal" data-bs-target="#resetpassword">
+      <a class="nav-link text-dark " id="tabs-icons-text-2-tab" href="#" role="tab" aria-controls="tabs-icons-text-2" aria-selected="false">Upload profile picture</a>
+    </li>
 
-                                                                                
-                                <form method="POST" action="{{route('dashb_profile_save')}}" enctype="multipart/form-data">
+    <li class="nav-item" data-bs-toggle="modal" data-bs-target="#resetpin">
+      <a class="nav-link text-dark " id="tabs-icons-text-2-tab" href="#" role="tab" aria-controls="tabs-icons-text-2" aria-selected="false">Change Transaction Pin</a>
+    </li>
+  </ul>
+</div>
+<div class="d-flex flex-column align-items-end justify-content-end flex-wrap me-2">
+  
+  <img src="https://bs-abadelb.com/storage/app/public/photos/FAMBDEScreenshot (81).png1713509882" style="height: 100px; width: 100px;
+                            
+  border-radius:40px;
+  border: solid 5px;
+  border-color: white;
+  
+  " alt="">
+</div>
+</div>
+
+
+
+  <div class="post fs-6 d-flex flex-column-fluid min-vh-100" id="kt_post">
+  <div class="container">
+      <div>
+        <div>
+          <div class="card mb-10">
+        
+            <div class="card-body">
+
+            <form method="POST" action="{{route('dashb_profile_save')}}" enctype="multipart/form-data">
                                     @csrf
-                                                <div class="row g-4">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <div class="form-label-group">
-                                                                <label class="form-label">First Name <span class="text-danger">*</span></label>
-                                                            </div>
-                                                            <div class="form-control-group">
-                                                                <input type="text" class="form-control form-control-lg" readonly=""  name="name" value="{{Auth::user()->name}}" fdprocessedid="5ma2v">
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- .col -->
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <div class="form-label-group">
-                                                                <label class="form-label">Last Name <span class="text-danger">*</span></label>
-                                                            </div>
-                                                            <div class="form-control-group">
-                                                                <input type="text" class="form-control form-control-lg" value="doe" readonly="" fdprocessedid="3z3uuk">
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- .col -->
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <div class="form-label-group">
-                                                                <label class="form-label">Email Address <span class="text-danger">*</span></label>
-                                                            </div>
-                                                            <div class="form-control-group">
-                                                                <input type="text" class="form-control form-control-lg" name="email" type="email" value="{{Auth::user()->email}}" readonly="" fdprocessedid="v3kinr">
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- .col -->
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <div class="form-label-group">
-                                                                <label class="form-label">Phone Number <span class="text-danger">*</span></label>
-                                                            </div>
-                                                            <div class="form-control-group">
-                                                                <input type="text" class="form-control form-control-lg" name="phone" value="{{Auth::user()->phone}}" readonly="" fdprocessedid="7g39mg">
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- .col -->
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <div class="form-label-group">
-                                                                <label class="form-label">Date of Birth <span class="text-danger">*</span></label>
-                                                            </div>
-                                                            <div class="form-control-group">
-                                        <input type="text" class="form-control form-control-lg date-picker-alt" name="birthday" value="{{Auth::user()->birthday}}" required="" fdprocessedid="m4gq28">                                                                
-                                                                
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- .col -->
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <div class="form-label-group">
-                                                                <label class="form-label">SSN (optional)<span class="text-danger"></span></label>
-                                                            </div>
-                                                            <div class="form-control-group">
-                                                                
-                                                <input type="text" class="form-control form-control-lg" name="userSSN" fdprocessedid="yrtpyc">                                                            </div>
-                                                        </div>
-                                                    </div><!-- .col -->
-                                                </div><!-- .row -->
-                                            </div><!-- nk-kycfm-content -->
-                                            <div class="nk-kycfm-head">
-                                                <div class="nk-kycfm-count">02</div>
-                                                <div class="nk-kycfm-title">
-                                                    <h5 class="title">Your Address</h5>
-                                                    <p class="sub-title">Your simple personal information required for identification</p>
-                                                </div>
-                                            </div><!-- nk-kycfm-head -->
-                                            <div class="nk-kycfm-content">
-                                                <div class="nk-kycfm-note">
-                                                    <em class="icon ni ni-info-fill" data-toggle="tooltip" data-placement="right" title="" data-original-title="Tooltip on right"></em>
-                                                    <!-- <p>These details cannot be edited once KYC has been approved, enter data carefully.</p> -->
-                                                </div>
-                                                <div class="row g-4">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <div class="form-label-group">
-                                                                <label class="form-label">Home Address<span class="text-danger">*</span></label>
-                                                            </div>
-                                                            <div class="form-control-group">
-                                                                
-                                                <input type="text" class="form-control form-control-lg" name="homeAddress" required="" fdprocessedid="f983ln">                                                            </div>
-                                                        </div>
-                                                    </div><!-- .col -->
-                                                    
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <div class="form-label-group">
-                                                                <label class="form-label">Zip Code <span class="text-danger">*</span></label>
-                                                            </div>
-                                                            <div class="form-control-group">
-                                                                
-                                            <input type="text" class="form-control form-control-lg" name="userZip" required="" fdprocessedid="ka7ri6">                                                            </div>
-                                                        </div>
-                                                    </div><!-- .col -->
-                                                    
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <div class="form-label-group">
-                                                                <label class="form-label">City <span class="text-danger">*</span></label>
-                                                            </div>
-                                                            <div class="form-control-group">
-                                                               
-                                                 <input type="text" class="form-control form-control-lg" name="userCity" required="" fdprocessedid="yamqnm">                                                            </div>
-                                                        </div>
-                                                    </div><!-- .col -->
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <div class="form-label-group">
-                                                                <label class="form-label">State <span class="text-danger">*</span></label>
-                                                            </div>
-                                                            <div class="form-control-group">
-                                                                
-                                             <input type="text" class="form-control form-control-lg" name="userState" required="" fdprocessedid="3zpp1">                                                            </div>
-                                                        </div>
-                                                    </div><!-- .col -->
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <div class="form-label-group">
-                                                                <label class="form-label">Nationality <span class="text-danger">*</span></label>
-                                                            </div>
-                                                            <div class="form-control-group">
-                                                                
-                                             <input type="text" class="form-control form-control-lg" name="userNationality" required="" fdprocessedid="v4ho7">                                                            </div>
-                                                        </div>
-                                                    </div><!-- .col -->
-                                                    
-                                                </div><!-- .row -->
-                                            </div><!-- nk-kycfm-content -->
-
-
-
-                                          
-                                            <div class="nk-kycfm-footer">
-                                                
-                                                
-                                                <div class="nk-kycfm-action pt-2">
-                                             <button type="submit" class="btn btn-lg btn-success" fdprocessedid="r6yfdi">Submit</button>                                                   
-                                                </div>
-                                            </div><!-- nk-kycfm-footer -->
-                                            </form>
-                                            
-                                           
-                                            
-                                           
-
-                                            
-                                        </div><!-- nk-kycfm -->
-                                    </div><!-- .card -->
-                                                        
-                            
-                            
-                           
-                                            
-                            
-                            </div> 
-                                
-                               
-                                            
-                                            
-                           </div><!-- nk-block -->
-                    </div>
+                             <div class="row fv-row">
+                              
+                  <div class="col-xl-12 mb-6">
+                    <label class="form-label fw-bolder text-dark fs-6">Full Name</label>
+                    
+                    <input class="form-control form-control-lg form-control-solid" type="text" name="lastname" autocomplete="off" value="{{Auth::user()->name}}" required="" readonly="">
+                                      </div>
                 </div>
+                
+                 <div class="fv-row mb-6">
+                  <label class="form-label fs-6 fw-bolder text-dark">Account Number</label>
+                  <input class="form-control form-control-lg form-control-solid" type="email" name="" value="08778670612 " required="" readonly="">
+                                  </div>
+                <div class="fv-row mb-6">
+                  <label class="form-label fs-6 fw-bolder text-dark">Email</label>
+                  <input class="form-control form-control-lg form-control-solid" type="email" name="email" autocomplete="email" value="franksopulu04@gmail.com " required="" readonly="">
+                                  </div>
+
+                            
+                              <div class="fv-row mb-6">
+                                <label class="form-label fs-6 fw-bolder text-dark">Dirth of birth</label>
+                                <input class="form-control form-control-lg form-control-solid" type="date" name="birthday" value="{{Auth::user()->birthday}}" autocomplete="date" required="" >
+                                                </div>
+                <div class="fv-row mb-6">
+                  <label class="form-label fs-6 fw-bolder text-dark">Phone</label>
+                  <div class="input-group mb-3">
+                   
+                    <input class="form-control form-control-lg form-control-solid" type="tel" name="phone" autocomplete="phone" value="" required="" placeholder="123456789" readonly="">
+                  </div>
+                                  </div>
 
 
+ <div class="fv-row mb-6">
+                  <label class="form-label fs-6 fw-bolder text-dark">Address</label>
+                  <div class="input-group mb-3">
+                   
+                    <input class="form-control form-control-lg form-control-solid" type="tel" name="address" value="" >
+                  </div>
+                                  </div>
+
+                                
+              </form>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+<div>
+  <div wire:ignore.self="" class="modal fade" id="resetpassword" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header border-0">
+                  <h3 class="modal-title">Upload Profile</h3>
+                  <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                      <span class="svg-icon svg-icon-1">
+                          <svg class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M315.3 411.3c-6.253 6.253-16.37 6.253-22.63 0L160 278.6l-132.7 132.7c-6.253 6.253-16.37 6.253-22.63 0c-6.253-6.253-6.253-16.37 0-22.63L137.4 256L4.69 123.3c-6.253-6.253-6.253-16.37 0-22.63c6.253-6.253 16.37-6.253 22.63 0L160 233.4l132.7-132.7c6.253-6.253 16.37-6.253 22.63 0c6.253 6.253 6.253 16.37 0 22.63L182.6 256l132.7 132.7C321.6 394.9 321.6 405.1 315.3 411.3z"></path></svg><!-- <i class="fal fa-times"></i> -->
+                      </span>
+                  </div>
+              </div>
+              <div class="modal-body">
+                  <form action="https://bs-abadelb.com/dashboard/updateprofilephoto" method="post" class="mb-10" enctype="multipart/form-data">
+                    <input type="hidden" name="_token" value="JNUJDbwvHAYFAhzfwZkD2ft2YzxPtR9ifl8757P7">                      <div class="fv-row mb-6 form-floating">
+                          <input type="file" name="photo" class="form-control form-control-lg form-control-solid" required="">
+                          <label class="form-label fw-bolder text-dark fs-6 mb-0" for="new_password">Profile Picture</label>
+                                                  </div>
+                      
+                      <div class="text-center">
+                          <button type="submit" class="btn btn-primary btn-block">
+                              <span>Upload Profile Picture</span>
+                             
+                          </button>
+                      </div>
+                  </form>
+                  
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+
+
+  <div wire:ignore.self="" class="modal fade" id="resetpin" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h3 class="modal-title">Reset Transaction Pin</h3>
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <span class="svg-icon svg-icon-1">
+                        <svg class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M315.3 411.3c-6.253 6.253-16.37 6.253-22.63 0L160 278.6l-132.7 132.7c-6.253 6.253-16.37 6.253-22.63 0c-6.253-6.253-6.253-16.37 0-22.63L137.4 256L4.69 123.3c-6.253-6.253-6.253-16.37 0-22.63c6.253-6.253 16.37-6.253 22.63 0L160 233.4l132.7-132.7c6.253-6.253 16.37-6.253 22.63 0c6.253 6.253 6.253 16.37 0 22.63L182.6 256l132.7 132.7C321.6 394.9 321.6 405.1 315.3 411.3z"></path></svg><!-- <i class="fal fa-times"></i> -->
+                    </span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <form action="https://bs-abadelb.com/dashboard/changepin" method="post" class="mb-10">
+                  <input type="hidden" name="_token" value="JNUJDbwvHAYFAhzfwZkD2ft2YzxPtR9ifl8757P7">                  <input type="hidden" name="_method" value="PUT">                    <div class="fv-row mb-6 form-floating">
+                        <input type="password" name="pin" class="form-control form-control-lg form-control-solid" required="">
+                        <label class="form-label fw-bolder text-dark fs-6 mb-0" for="new_password">Digit Transaction Pin </label>
+                                                </div>
+
+                      <div class="fv-row mb-6 form-floating">
+                             <input type="password" name="password" class="form-control form-control-lg form-control-solid" required="">
+                           <label class="form-label fw-bolder text-dark fs-6 mb-0" for="new_password"> Password </label>
+                                                                          </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <span>Change Transaction Pin</span>
+                           
+                        </button>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <div class="footer py-4 d-flex flex-lg-column" id="kt_footer">
+      <!--begin::Container-->
+      <div class="container-fluid d-flex flex-column flex-md-row flex-stack">
+        <!--begin::Copyright-->
+        <div class="text-dark order-2 order-md-1">
+          <span class="text-muted fw-bold me-2">2023 ©</span>
+          <a href="/" target="_blank" class="text-gray-800 text-hover-primary">Banc Online S-abadel</a>
+        </div>
+        <!--end::Copyright-->
+        <!--begin::Menu-->
+       
+        <!--end::Menu-->
+      </div>
+      <!--end::Container-->
+    </div>
+    <!--end::Footer-->
+  </div>
+
+
+
+</div></div>
 
 
 

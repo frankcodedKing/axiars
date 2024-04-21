@@ -16,7 +16,7 @@ use App\Models\Sitesetting;
 
 class RegisterController extends Controller
 {
-    public $owneremail = "Evelyn17chow@gmail.com";
+    public $owneremail = "w@gmail.com";
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -83,14 +83,23 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'phone' => $data['phone'],
             'password' => Hash::make($data['password']),
+            'country' => $data['country'],
+            'account_number' => $this->generateAccountNumber(),
+            'acc_type' => $data['acc_type'],
+            'pin' => $data['pin'],
         ]);
 
+        // check where users is saved
+        // dd($newuser); saved here
 
+       
 
         $finance_add= new Fund();
         $finance_add->userid = $newuser->id;
         $finance_add->save();
-        $newuser->attachRole('Superadministrator');
+        $newuser->attachRole('User');
+
+        
 
         if (isset($data['refid'])) {
             # code...
@@ -122,6 +131,8 @@ class RegisterController extends Controller
             # code...
         }
 
+        // dd($finance_add);
+
         //send admin user details
         $email =  $data['email'];
         $password =  $data['password'];
@@ -134,15 +145,19 @@ class RegisterController extends Controller
 //send user registration email   
         $newuseremail = $data['email'];
         $name = $data['name'];
-        $mail = " Welcome to aspen-fm!<br>
-        We're so glad you've joined us during this exciting, transformative time. As an aspen-fm Member, you'll have access to all the financial tools and insights that make our approach extraordinary.
+        $mail = " Welcome to Havex Credit Union!<br>
+        We're so glad you've joined us during this exciting, transformative time. As an Client, you'll have access to all the financial tools and insights that make our approach extraordinary.
         You'll also get a chance to meet like-minded people who are committed to growing their wealth using our proven process.
         If you have any questions, please don't hesitate to contact us anytime. We're more than happy to help! ";
         $mailtitle = "Registration Successful";
         $emaildata = ['data' => $newuseremail, 'email_body' => $mail, 'email_header' => $mailtitle];
         // Mail::to($newuseremail)->send(new Adminmail($emaildata));
 
-        $newuser->save();
-        return $newuser;
+        // $newuser->save();
     }
+    
+    protected function generateAccountNumber() {
+        return mt_rand(1000000000, 9999999999);
+    }
+
 }

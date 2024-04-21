@@ -1,131 +1,218 @@
-@extends("layouts.spacedcustomlayout")
+@extends("layouts.customlayout")
 
 @section("body")
 
 
+<div class="content-wrapper">
 
-<div class="banner banner-inner banner-s2 banner-s2-inner tc-light">
-    <div class="banner-block">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-7 col-sm-9">
-                    <div class="banner-content">
-                        <div class="line-animate">
-                            <span class="line line-top"></span>
-                            <span class="line line-right"></span>
-                            <span class="line line-bottom"></span>
-                            <span class="line line-left"></span>
-                        </div>
-                        <p class="sub-heading">Our Services</p>
-                        <h1 class="banner-heading">Loans and Grants</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="bg-image">
-            <img src="images/bg-a.jpg" alt="banner">
-        </div>
-    </div>
-</div>
-
-
-</header>
-<!-- START SECTION BANNER -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="section section-x tc-grey-alt" style='padding-bottom: 10px;'>
+<div class="breadcrumb-wrap bg-f br-1" style="margin-top:-140px;">
 <div class="container">
-    <div class="row justify-content-between align-items-center gutter-vr-30px">
-        <div class="col-lg-4 order-lg-last">
-            <div class="image-block">
-                <img src="serv/7.jpg" alt="">
-            </div>
-        </div><!-- .col -->
-        <div class="col-lg-8">
-            <div class="text-block">
-                <h5 class="heading-xs dash">aspen-fm </h5>
-                <h2>Loans and Grants</h2>
-                <p class="lead">
-                                        Getting a loan doesn’t have to be intimidating, with the right lender it can be
-                       a simple process. You only need a lender committed to taking the mystery out of the mortgage loan
-                       process! At aspen-fm , we understand! Our investors want simple facts, honest answers
-                       and competitive products.
-
-DGS automatically offers loan services to investors with over $50,000 investment either in our normal aspen-fm  financial
-
-Services packages or the NFP plans. Investors over $50,000 are entitled to loans of $200,000-1millon dollars yearly with 5%
-paid monthly, or the investor could wish to compound the interest till the time limit, provided all required information and
-identity of the investor are duly confirmed by aspen-fm  loan board.
-
-Every investor above $50,000 is provided with a personal account manager and the investor has a direct communication with
-the manager in order to see that our loan offers are secured.
-
-GREAT INVESTING WITH aspen-fm  FAMILY
-                                        </p>
-            </div>
-        </div><!-- .col -->
-    </div><!-- .row -->
+<div class="breadcrumb-title">
+<br><br>
+<h2>Loans</h2>
+<ul class="breadcrumb-menu list-style">
+<li><a href="/">Home </a></li>
+<li>Loans</li>
+</ul>
+</div>
 </div>
 </div>
 
 
-
-
-
-<div class="project-area project-call section-m bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="d-lg-flex text-center text-lg-left align-items-center justify-content-between">
-                        <h2 class="fw-4">Want to see more services? </h2>
-                                                        <a href="{{route('services')}}" class="btn">See All Services</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-<!-- END SECTION BLOG -->
-
-<!-- code -->
-
-<!-- end code -->
-<!-- section / cta-->
-<div class="section section-cta bg-primary tc-light">
+<div class="feature-wrap style1 pt-100 pb-75">
 <div class="container">
-    <div class="row gutter-vr-30px align-items-center justify-content-between">
-        <div class="col-lg-8 text-center text-lg-left">
-            <div class="cta-text-s2">
-                <h2><span>Start your journey to</span> <strong> Financial freedom </strong></h2>
-            </div>
-        </div>
-        <div class="col-lg-4 text-lg-right text-center">
-            <div class="cta-btn">
-                <a href="{{route('joinus')}}" class="btn btn-lg">Get Started</a>
-            </div>
-        </div>
-    </div>
+<div class="row">
+<div class="col-xl-6 offset-xl-3 col-lg-10 offset-lg-1">
+<div class="section-title style1 text-center mb-40">
+<span style="text-transform: uppercase;">Banc Online S-abadel</span>
+<h4>We've got you covered whether you're looking to pre-qualify for vehicle financing, refinancing your current auto loan, or have been pre-approved for an exclusive financing offer. Let's get started on your financial journey.</h4>
+</div>
 </div>
 </div>
 
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-12">
+			  <!------------------------------------------------------>
+                       <div class="row">
+                         <div class="col-sm-12">
+                            <div class="panel panel-default">
+                             <div class="panel-body">
+                               <h4 style=""><img  src="temp/custom/images/3527271.png" width="25px"> &nbsp;LOAN DETAILS</h4>
+                               <hr>
+
+                               <div class="row">
+
+                                <div class="col-sm-3" align="center">
+                                 <img  src="temp/custom/images/5207009.png" class="img-responsive" style="margin-top: 15px;" width="50">
+                                  <br>
+                                  <span style="font-size:14px;">CAR LOAN</span><br><br>
+                                  
+                                   <div class="hidden-md hidden-lg"><hr></div>
+                                </div>
+
+
+                                <div class="col-sm-3" align="center">
+                                  <img  src="temp/custom/images/4221696.png" class="img-responsive" style="margin-top: 15px;" width="50">
+                                  <br>
+                                  <span style="font-size:14px;">HOME LOAN</span><br><br>
+                                   
+                                   <div class="hidden-md hidden-lg"><hr></div>
+                                 </div>
+
+                                 <div class="col-sm-3" align="center">
+                                   <img  src="temp/custom/images/3130571.png" class="img-responsive" style="margin-top: 15px;" width="50">
+                                  <br>
+                                  <span style="font-size:14px;">BUSINESS LOAN</span><br><br>
+                                   
+                                   <div class="hidden-md hidden-lg"><hr></div>
+                                 </div>
+
+                                 <div class="col-sm-3" align="center">
+                                   <img  src="temp/custom/images/2780256.png" class="img-responsive" style="margin-top: 15px;" width="50">
+                                  <br>
+                                  <span style="font-size:14px;">MEDICAL LOAN</span><br><br>
+                                   
+                                   <div class="hidden-md hidden-lg"><hr></div>
+                                 </div>
+                                 
+                               </div>
+
+                               <br>
+                               
+                             </div>
+                           </div>
+                         </div>
+                       </div>
+                       
+                       
+                       <!------------------------------------------------------>
+<br><br><br>
+                       <!------------------------------------------------------>
+                       <div class="row">
+                         <div class="col-sm-2"></div>
+                         <div class="col-sm-4">
+                            <img  src="temp/custom/images/1907675.png" class="img-responsive" style="margin-top: 15px;" width="150">
+                         </div>
+                         <div class="col-sm-4">
+                          <h3>Apply For Loans</h3>
+                                   <p>Welcome to Banc Online S-abadel, Apply For loans to be delivered to your doorstep today.</p>
+                                   <br>
+                                   <a href="loans" target="_blank" class="btn btn-primary">Apply</a>
+                         </div>
+                         <div class="col-sm-2"></div>
+                       </div>
+                       <br><br><br>
+                       <!------------------------------------------------------>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="row justify-content-center">
+<div class="col-xl-4 col-lg-6 col-md-6">
+<div class="feature-card style3">
+<div class="feature-title">
+<span>
+<i class="ri-apple-fill"></i>
+</span>
+<h3><a href="send-money">Apple ios</a></h3>
+</div>
+<p></p>
+</div>
+</div>
+<div class="col-xl-4 col-lg-6 col-md-6">
+<div class="feature-card style3">
+<div class="feature-title">
+<span>
+<i class="ri-android-fill"></i>
+</span>
+<h3><a href="chart">Google Android</a></h3>
+</div>
+<p></p>
+</div>
+</div>
+<div class="col-xl-4 col-lg-6 col-md-6">
+<div class="feature-card style3">
+<div class="feature-title">
+<span>
+<i class="ri-github-line"></i>
+</span>
+<h3><a href="alerts">Alexa</a></h3>
+</div>
+<p></p>
+</div>
+</div>
+<div class="col-xl-4 col-lg-6 col-md-6">
+<div class="feature-card style3">
+<div class="feature-title">
+<span>
+<i class="ri-slack-line"></i>
+</span>
+<h3><a href="register">Slack</a></h3>
+</div>
+<p></p>
+</div>
+</div>
+<div class="col-xl-4 col-lg-6 col-md-6">
+<div class="feature-card style3">
+<div class="feature-title">
+<span>
+<i class="ri-google-fill"></i>
+</span>
+<h3><a href="register">Google Assistant</a></h3>
+</div>
+<p></p>
+</div>
+</div>
+<div class="col-xl-4 col-lg-6 col-md-6">
+<div class="feature-card style3">
+<div class="feature-title">
+<span>
+<i class="ri-facebook-fill"></i>
+</span>
+<h3><a href="register">Facebook</a></h3>
+</div>
+<p></p>
+</div>
+</div>
+ </div>
+</div>
+</div>
+
+
+<section class="app-wrap style1 ptb-100 bg-whisper">
+<div class="container">
+<div class="row gx-5 align-items-center">
+<div class="col-lg-6">
+<div class="app-img-wrap">
+<img src="temp/custom/assets/img/shape-4.png" alt="Image" class="app-shape-one bounce">
+<img src="temp/custom/assets/img/app-screen.png" alt="Image">
+</div>
+</div>
+<div class="col-lg-6">
+<div class="app-content">
+<div class="content-title style1">
+<span>OUR LOANS</span>
+<h2>Finance your next car</h2>
+<p>Are you looking for a car loan for a new or used vehicle? In minutes, find out if you're pre-qualified for financing with no influence on your credit score. Also, before visiting a participating dealer, make sure you understand your loan terms.</p>
+</div>
+<h5>Over 700K+ approved loans</h5>
+<div class="app-btn-wrap">
+<a href="app">
+<img src="temp/custom/assets/img/about/play-store.png" alt="Image">
+</a><a href="app">
+<img src="temp/custom/assets/img/about/app-store.png" alt="Image">
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+</div>
 
 
 

@@ -15,6 +15,8 @@ class AddKycToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
+        $table->Integer('status')->default(0); // 0 for not_verified, 1 for verified
+
         });
     }
 
