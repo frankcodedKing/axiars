@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Upload;
 use App\Models\Deposit;
 use App\Models\Fund;
 use App\Models\Withdrawal;
@@ -11,7 +12,10 @@ use App\Models\Investment;
 use App\Models\Investmentplan;
 use App\Models\Referral;
 use App\Models\Topearner;
+use App\Models\NFT; 
+use App\Models\Txn;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Carbon\Carbon;
 use App\Models\Message;
 use App\Models\Notification;
@@ -36,7 +40,7 @@ class Userdashcontroller extends Controller
     public $owneremail = "info@gmail.com";
     public function __construct()
     {
-        $this->middleware(['auth', 'verified']);
+        // $this->middleware(['auth', 'verified']);
         $logged_in_user = Auth::user();
     }
 
@@ -133,88 +137,20 @@ class Userdashcontroller extends Controller
 
     public function dash_index()
     {
-        $user_running_investment = Investment::where('userid', $this->logged_in_user()->id)->where('investmentStatus', 0)->get();
-        $current_profit = [];
-        if ($user_running_investment->count() > 0) {
-            foreach ($user_running_investment as $inv) {
-                # code...
-                $mature_date = $inv->investmentmaturitydate;
-                $mature_date  = Carbon::parse($mature_date);
-                $today = Carbon::now();
-                $days_profit = $inv->stage;
-               
-                $days_profit_array = json_decode($days_profit);
-                
-                
-                foreach ($days_profit_array as $key => $day_profit) {
-                    # code...
-                    $dday = Carbon::parse($day_profit);
-               
-                    $today = Carbon::now();
-                    if ($today->greaterThan($dday)) {
-                        # code...
-                        $inv->gotteninvestmentprofit = $inv->gotteninvestmentprofit  + $inv->investmentprofit;
-                        if (gettype($days_profit_array)=="object")
-                        {
-                            unset($days_profit_array->$key);
-                            
-                        }
-                        else{
-                            unset($days_profit_array[$key]);
-                        }
-                        $days_string = json_encode($days_profit_array);
-                        $inv->stage = $days_string;
-                        $inv->save();
-                        $user_fundss = Fund::where('userid', $this->logged_in_user()->id)->first();
-                        $user_fundss->currentprofit = $user_fundss->currentprofit + $inv->investmentprofit;
-                        $user_fundss->save();
-                    }
-                    $investgottenprofit =  $inv->gotteninvestmentprofit;
-                }
-                if ($today->greaterThan($mature_date)) {
-                    # code...
-                    $user_funds = Fund::where('userid', $this->logged_in_user()->id)->first();
-                    $user_funds->balance = $user_funds->balance +  $inv->investmentamount + $investgottenprofit;
-                    $user_funds->totalprofit = $user_funds->totalprofit + $investgottenprofit;
-                    
-                    $user_funds->currentinvestment = $user_funds->currentinvestment - $inv->investmentamount;
-                    $user_funds->currentprofit = $user_funds->currentprofit - $investgottenprofit;
-
-                    if ($user_funds->save()) {
-                        # code...
-                        $user_investment = Investment::where('id', $inv->id)->first();
-                        $user_investment->investmentStatus = 1;
-                        $user_investment->save();
-                    } else {
-                        # code...
-                        $domain = request()->getHost();
-                        $email = "info@nanocodes.com.ng";
-                        $mail = "please there is an error in $domain investment calculation";
-                        $mailtitle = "website error in $domain";
-                        $emaildata = ['data' => $email, 'email_body' => $mail, 'email_header' => $mailtitle];
-
-                        // Mail::to($email)->send(new Adminmail($emaildata));
-                    }
-                } else {
-                    # code...
-                }
-
-                array_push($current_profit, $inv->gotteninvestmentprofit);
-            }
-        } else {
-        }
-        $totalcurrentprofit = array_sum($current_profit);
-
-        $user_fundsum = Fund::where('userid', $this->logged_in_user()->id)->first();
-        $user_fundsum->totalbalance = $user_fundsum->balance + $user_fundsum->currentinvestment;
-        $user_fundsum->totalprofit = $totalcurrentprofit;
-        $user_fundsum->save();
+       
         $user_funds = Fund::where('userid', $this->logged_in_user()->id)->first();
         $user_withdrawals = Withdrawal::where('userid', $this->logged_in_user()->id)->latest()->take(1)->get();
         $user_deposits = Deposit::where('userid', $this->logged_in_user()->id)->latest()->take(1)->get();
         $user_deposits_count = $user_deposits->count();
         $all_ref = DB::table('referrals')->where('olduseruserid', $this->logged_in_user()->id)->join('users', 'referrals.newuserid', '=', 'users.id')->get();
         $compoundings = Compound::where('userid', $this->logged_in_user()->id)->latest()->take(1)->get();
+
+                
+            // Fetch the 5 most recent transactions
+        $user_txns = Txn::where('user_id', $this->logged_in_user()->id)  // Use logged_in_user()->id
+        ->orderBy('created_at', 'desc')
+        ->limit(5)
+        ->get();
         
         $sitesetting = Sitesetting::first();        
         // dd($sitesetting);
@@ -232,8 +168,327 @@ class Userdashcontroller extends Controller
         // dd($user_withdrawals->amount);
 
         $data['deposits'] = $user_deposits;
+        
+        // Add to data array
+
+        $data['txns'] = $user_txns;
+        
         return view('dashb.dash_index', $data);
     }
+
+
+
+
+    
+
+
+    public function createnft() {
+        return view('dashb.createnft');
+    }
+
+    // public function uploadNft() {
+
+    // Upload/Minting Fee = 0.1 Eth = 0.1xethprice
+    // for each upload deduct 0.1eth from user balance and save nft model to db
+    //     return view('dashb.createnft');
+    // }
+
+
+    public function collection() {
+
+        // get all the particular users nfts created / bought in the db
+
+         // Get the authenticated user
+    $user = auth()->user();
+
+    // Fetch uploads by the user
+    $uploads = Upload::where('owner_id', $user->id)->get();
+
+    // Pass the uploads to the view
+    return view('dashb.collection', compact('uploads'));
+    }
+
+
+
+    public function listForSale(Request $request, $id) {
+        // Validate the price input
+        $request->validate([
+            'price' => 'required|numeric|min:0',
+        ]);
+
+        // Find the upload by its ID
+        $upload = Upload::find($id);
+
+        // Check if the upload exists and if the current user is the owner
+        if (!$upload || $upload->owner_id !== auth()->id()) {
+            Alert::error('Error', 'You cannot list this item for sale.');
+            return redirect()->back();
+        }
+
+        // Set the sale status to 1 (listed for sale) and update the price
+        $upload->sale_status = 1;
+        $upload->price = $request->price;
+        $upload->save();
+        
+
+        Alert::success('Success', 'The NFT has been listed for sale with the price updated.');
+        return redirect()->back(); 
+    
+    }
+
+
+
+
+    public function marketplace()
+    {
+        // Fetch all NFTs where sale_status is 1 (listed for sale)
+        $listedNFTs = Upload::where('sale_status', 1)->get();
+
+        // Return view with listed NFTs
+        return view('dashb.marketplace', compact('listedNFTs'));
+    }
+
+
+
+
+    public function buyNFT(Request $request, $id)
+    {
+        // Get the authenticated user (buyer)
+        $buyer = auth()->user();
+    
+        // Find the NFT by its ID
+        $nft = Upload::findOrFail($id);
+    
+        // Check if the buyer is the owner of the NFT
+        if ($nft->owner_id === $buyer->id) {
+            Alert::error('error', 'You cannot buy your own NFT.');
+            return redirect()->route('marketplace');
+        }
+    
+        // Get the buyer's balance
+        $buyerFund = Fund::where('userid', $buyer->id)->first();
+    
+        // Check if buyer has enough balance
+        if ($buyerFund->balance < $nft->price) {
+            Alert::error('error', 'Insufficient balance to buy this NFT.');
+            return redirect()->route('marketplace');
+        }
+    
+        // Deduct the price from buyer's balance
+        $buyerFund->balance -= $nft->price;
+        $buyerFund->save();
+    
+        // Change the owner of the NFT to the buyer
+        $nft->owner_id = $buyer->id;
+        
+        // Set sale status to 0 (not listed anymore)
+        $nft->sale_status = 0;
+        $nft->save();
+    
+        Alert::success('success', 'NFT purchased successfully!');
+        return redirect()->route('marketplace')->with('success', 'NFT purchased successfully!');
+    }
+    
+
+
+
+
+
+
+    public function salenft(Request $req) {
+
+    // listing Fee = 0.05 Eth = 0.05xethprice
+    // for each listing deduct 0.05eth from user balance and save nft sale status to for sale(on = 1) to db
+    // Takes in nft id request as to which nft is being listed.
+ 
+
+        return view('dashb.salenft');
+    }
+
+
+
+    
+
+
+
+
+
+   public function storeUpload(Request $request)
+   {
+       // Validate the input
+       $request->validate([
+           'name' => 'required|string|max:255',
+           'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240', // Max size 10MB
+           'description' => 'required|string',
+           'supply' => 'required|integer|min:1',
+       ]);
+   
+       // Get the authenticated user
+       $user = auth()->user();
+       $user_fund = Fund::where('userid', $user->id)->first();
+   
+       // Fetch the real-time ETH to USD conversion rate from CoinGecko
+       $response = Http::get('https://api.coingecko.com/api/v3/simple/price', [
+           'ids' => 'ethereum',
+           'vs_currencies' => 'usd'
+       ]);
+   
+       if ($response->successful()) {
+           $ethUsdPrice = $response->json()['ethereum']['usd'];
+       } else {
+           return redirect()->back()->with('error', 'Could not fetch the current ETH price. Please try again later.');
+       }
+   
+       // The cost of uploading an NFT in ETH (0.1 ETH)
+       $uploadFeeEth = 0.1;
+       $uploadFeeUsd = $uploadFeeEth * $ethUsdPrice;
+   
+       // Check if the user has enough USD balance to upload an NFT
+       if ($user_fund->balance < $uploadFeeUsd) {
+
+        Alert::error('Insufficient Balance', 'You need at least ' . number_format($uploadFeeUsd, 2) . ' USD to upload an NFT.');
+        return redirect()->route('dash_index');      
+        }
+   
+       // Deduct the fee in USD from the user's balance
+       $user_fund->balance -= $uploadFeeUsd;
+       $user_fund->save();
+   
+       // Store the image in the 'uploads' folder
+       $imagePath = $request->file('image')->store('uploads', 'public');
+   
+       // Create a new upload entry in the database
+       Upload::create([
+           'name' => $request->name,
+           'image' => $imagePath,
+           'description' => $request->description,
+           'owner_id' => $user->id,
+           'supply' => $request->supply,
+           'price' => $request->price,  // Default price
+           'sale_status' => 1,  // Default sale status
+       ]);
+
+       Txn::create([
+        'user_id' => auth()->id(),
+        'txn_type' => 'upload', // or 'deposit', 'sale', etc.
+        'amount' => $request->price,
+        ]);
+   
+       Alert::success('Success', 'Uploaded successfully.');
+       return redirect()->route('dash_index');
+          }
+   
+
+
+
+
+
+public function storeNFT(Request $request)
+{
+    // Validate the input
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'description' => 'required|string',
+        // 'supply' => 'required|integer|min:1',
+    ]);
+
+    // Get the authenticated user
+    $user = auth()->user();
+
+    $user_fund = Fund::where('userid', $this->logged_in_user()->id)->first();
+
+
+    // Fetch the real-time ETH to USD conversion rate from CoinGecko
+    $response = Http::get('https://api.coingecko.com/api/v3/simple/price', [
+        'ids' => 'ethereum',
+        'vs_currencies' => 'usd'
+    ]);
+
+    if ($response->successful()) {
+        $ethUsdPrice = $response->json()['ethereum']['usd'];
+    } else {
+        
+        Alert::error('error', "Upload error. price feed err");
+            return redirect()->route('dash_index')->with('error', 'price Request failed, please try again');
+        // return redirect()->back()->with('error', 'Could not fetch the current ETH price. Please try again later.');
+    }
+
+    // The cost of uploading an NFT in ETH (0.1 ETH)
+    $uploadFeeEth = 0.1;
+
+    // Convert the fee to USD
+    $uploadFeeUsd = $uploadFeeEth * $ethUsdPrice;
+
+    // dd($uploadFeeUsd);
+
+    // Check if the user has enough USD balance to upload an NFT
+    if ($user_fund->balance < $uploadFeeUsd) {
+
+        Alert::error('error', "Upload error insufficient balance");
+            return redirect()->route('dash_index')->with('error', 'Request failed due to insufficient balance,  please try again');
+        // Alert::error('error', "Insufficient balance to upload NFT. You need at least ' . number_format($uploadFeeUsd, 2) . ' USD.");
+        
+    // return back()->with('error', 'Insufficient balance to upload NFT. You need at least ' . number_format($uploadFeeUsd, 2) . ' USD.');
+
+        // return redirect()->back()->with('error', 'Insufficient balance to upload NFT. You need at least ' . number_format($uploadFeeUsd, 2) . ' USD.');
+    }
+
+    // Deduct the fee in USD from the user's balance
+    $user_fund->balance -= $uploadFeeUsd;
+    $user_fund->save();
+
+    // Store the image in the 'nft_images' folder
+    $imagePath = $request->file('image')->store('nft_images', 'public');
+
+    // Create a new NFT entry in the database
+    NFT::create([
+        'name' => $request->name,
+        'image' => $imagePath,
+        'description' => $request->description,
+        'owner_id' => $user->id,
+        'supply' => $request->supply,
+        'price' => 0,  // Default price
+        'sale_status' => 0,  // Default sale status
+    ]);
+
+
+    Alert::success('success', "Uploaded successfully. Please wait for confirmation!");
+    return redirect()->route('dash_index')->with('success', 'Uploaded successfully. Please wait for confirmation!');
+    
+
+    // Alert::success('success', "withdrawal request submited and under processing!");
+        
+    // return back()->with('success', 'NFT uploaded successfully, and ' . number_format($uploadFeeUsd, 2) . ' USD deducted from your balance.');
+
+    // return redirect()->route('nft.index')->with('success', 'NFT uploaded successfully, and ' . number_format($uploadFeeUsd, 2) . ' USD deducted from your balance.');
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public function dash_portfolio() {
@@ -383,7 +638,10 @@ class Userdashcontroller extends Controller
         $data = [];
         $data['title'] = "Make deposit";
         $deposit_amount = $req->amount;
-        $method = strtolower($req->method);
+
+        $method = strtolower('eth');
+
+        // dd($req->method);
         if ($deposit_amount == null ) {
             # code...
             Alert::error('error', "deposit request failed, please Enter an amount and try again");
@@ -426,18 +684,29 @@ class Userdashcontroller extends Controller
             $mailtitle = "Deposit Request from $username on " . "" . Carbon::now();
             $emaildata = ['data' => $email, 'email_body' => $mail, 'email_header' => $mailtitle];
             // Mail::to($email)->send(new Adminmail($emaildata));
-            $message = "please make a deposit of $$deposit_amount to the $method account $methacc within the next 5hrs";
-            //  $message = "Please wait for your deposit to be confirmed";
-            // Alert::success('success', $message);
-            return redirect()->route('dash_payment')->with("address", $methacc)->with("type", strtoupper($method))->with("amount", $deposit_amount);
+            // $message = "please make a deposit of $$deposit_amount to the $method account $methacc within the next 5hrs";
+             $message = "Please wait for your deposit to be confirmed";
+            Alert::success('success', $message);
+            return redirect()->route('dash_index')->with('success', ' request Successfull.'); 
+            // return redirect()->route('dash_payment')->with("address", $methacc)->with("type", strtoupper($method))->with("amount", $deposit_amount);
             // return redirect()->route('dash_payment')->with('success', 'deposit request Submitted, please wait for confirmation');
         } else {
             # code...
             Alert::error('error', "deposit request failed, please try again");
             return redirect()->route('dashb_deposits')->with('error', 'deposit request failed, please try again');
         }
-        return view('dash_index', $data);
+        return view('dashb.dash_index', $data);
     }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -909,77 +1178,14 @@ class Userdashcontroller extends Controller
     {
 
         $amount = $req->amount;
-        $method = $req->method;
+        // $method = $req->method;
         $address = $req->address;
         $user_fund = Fund::where('userid', $this->logged_in_user()->id)->first();
-        $from = $req->from;
+        // $from = $req->from;
 
 
-        // dd($from);
 
-        if ($from == "dividend") {
-            # code... Withdraw from 
-            if ($user_fund->currentprofit < $amount) {
-                # code...
-                // 
-                Alert::error('error', "Withdrawal failed: reason - Insufficient Funds!");
-                return back()->with('error', 'Withdrawal failed: reason - Insufficient Funds');
-            } else {
-                
-                    # code...
-                    $saveArray = [
-        
-                        'amount' => $amount,
-                        'method' => $method,
-                        'from' => $from,
-                        'methodaccount' => $address,
-                        'withdrawaltdate' => Carbon::now(),
-                        'status' => 0,
-                        'name' => $this->logged_in_user()->name,
-                        'userid' =>    $this->logged_in_user()->id,
-                    ];
-                    $result = $this->savedata(Withdrawal::class, "new", $saveArray);
-                    if ($result) {
-                        # code...
-                        $user_fund->pendingwithdrawal = $user_fund->pendingwithdrawal + $amount;
-                        $user_fund->totalwithdrawal = $user_fund->totalwithdrawal + $amount;
-                        $user_fund->save();
-        
-                        $domain = request()->getHost();
-                        $email = $this->owneremail;
-                        $username = $this->logged_in_user()->name;
-                        $mail = "$username  have requested for withdrawal of the sum of $amount, on your website $domain ";
-                        $mailtitle = "Withdrawal request  notification from $username on" . " " . Carbon::now();
-                        $emaildata = ['data' => $email, 'email_body' => $mail, 'email_header' => $mailtitle];
-        
-                        // Mail::to($email)->send(new Adminmail($emaildata));
-        
-                        $domain = request()->getHost();
-                        $email = Auth::user()->email;
-                        $username = $this->logged_in_user()->name;
-                        $mail = "We have recieved your withdrawal request of the sum of $$amount, through the $method  address   $address. Thus your withdrawal is under processing";
-                        $mailtitle = "Withdrawal request  notification on" . " " . Carbon::now();
-                        $emaildata = ['data' => $email, 'email_body' => $mail, 'email_header' => $mailtitle];
-        
-                        // Mail::to($email)->send(new Adminmail($emaildata));
-        
-                        Alert::success('success', "withdrawal request submited and under processing!");
-        
-                        return back()->with('success', 'withdrawal request submited and under processing');
-                    } else {
-                        # code...
-                        Alert::error('error', "withdrawal request failed!");
-                        return back()->with('error', 'withdrawal request failed');
-                    }
-                
-
-            }
-            
-        } else {
-            # code...Withdraw from referral
-            // REFRRAL
-
-            if ($user_fund->bonus < $amount) {
+            if ($user_fund->balance < $amount) {
                 # code...
                 // 
                 Alert::error('error', "Withdrawal failed: reason - Insufficient Funds!");
@@ -991,8 +1197,8 @@ class Userdashcontroller extends Controller
                     $saveArray = [
         
                         'amount' => $amount,
-                        'method' => $method,
-                        'from' => $from,
+                        'method' => 'eth',
+                        // 'from' => 'Not specified', // Set 'from' to null
                         'methodaccount' => $address,
                         'withdrawaltdate' => Carbon::now(),
                         'status' => 0,
@@ -1001,6 +1207,8 @@ class Userdashcontroller extends Controller
                     ];
                     $result = $this->savedata(Withdrawal::class, "new", $saveArray);
                     if ($result) {
+
+                        
                         # code...
                         $user_fund->pendingwithdrawal = $user_fund->pendingwithdrawal + $amount;
                         $user_fund->totalwithdrawal = $user_fund->totalwithdrawal + $amount;
@@ -1019,7 +1227,7 @@ class Userdashcontroller extends Controller
                         $domain = request()->getHost();
                         $email = Auth::user()->email;
                         $username = $this->logged_in_user()->name;
-                        $mail = "We have recieved your withdrawal request of the sum of $$amount, through the $method  address   $address. Thus your withdrawal is under processing";
+                        $mail = "We have recieved your withdrawal request of the sum of $$amount, through the ethereum  address   $address. Thus your withdrawal is under processing";
                         $mailtitle = "Withdrawal request  notification on" . " " . Carbon::now();
                         $emaildata = ['data' => $email, 'email_body' => $mail, 'email_header' => $mailtitle];
         
@@ -1036,7 +1244,6 @@ class Userdashcontroller extends Controller
                 
 
             }
-        }
         
 
         // if ($amount > $user_fund->withdrawal_maximum) {

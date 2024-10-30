@@ -12,6 +12,7 @@ use App\Models\Investmentplan;
 use App\Models\Referral;
 use App\Models\Topearner;
 use App\Models\Fund;
+use App\Models\Txn;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use App\Models\Newspost;
@@ -1174,6 +1175,14 @@ class adminController extends Controller
         $dep = $depo_to_approve->save();
         if ($fu && $dep) {
             # code...
+
+            Txn::create([
+                'user_id' => $depo_to_approve->userId,
+                'txn_type' => 'deposit', // or 'deposit', 'sale', etc.
+                'amount' => $depo_to_approve->amount,
+                ]);
+
+
             $mail = "Your deposit request of $$depo_to_approve->amount have been received in your account and your account credited ";
             $mailtitle = "Deposit Approval Notification";
             $email = User::where('id', $depo_to_approve->userId)->first()->email;
@@ -1198,6 +1207,12 @@ class adminController extends Controller
         $userwithdrawal->status = 1;
         $result = $userwithdrawal->save();
         if ($result) {
+
+            // Txn::create([
+            //     'user_id' => $depo_to_approve->userId,
+            //     'txn_type' => 'deposit', // or 'deposit', 'sale', etc.
+            //     'amount' => $depo_to_approve->amount,
+            //     ]);
             # code...
             $userfund =Fund::where('userid',$userwithdrawal->userid)->first();
             if ($userwithdrawal->from == "dividend") {

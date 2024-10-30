@@ -23,7 +23,7 @@ Route::get('/', function () {
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes(['verify' => true]);
+Auth::routes(['verify' => false]);
 
 
 //ADMIN
@@ -376,13 +376,6 @@ Route::post('/storeTestimonials', [App\Http\Controllers\adminController::class, 
 
 
 
-
-
-
-
-
-
-
 //new user dashboard
 
 Route::get('/dash_index', [App\Http\Controllers\Userdashcontroller::class, 'dash_index'])->name('dash_index');
@@ -407,6 +400,34 @@ Route::post('/changePassword', [App\Http\Controllers\Userdashcontroller::class, 
 Route::get('/uploadKyc', [App\Http\Controllers\Userdashcontroller::class, 'dash_kyc'])->name('dash_kyc');
 
 Route::post('/uploadKyc', [App\Http\Controllers\Userdashcontroller::class, 'uploadKyc'])->name('uploadKyc');
+
+
+// Route::post('/uploads', [Userdashcontroller::class, 'storeUpload'])->name('uploads.store');
+
+Route::post('/storeUpload', [App\Http\Controllers\Userdashcontroller::class, 'storeUpload'])->name('storeUpload');
+
+
+// listForSale
+
+Route::post('/listForSale/{id}', [App\Http\Controllers\Userdashcontroller::class, 'listForSale'])->name('listForSale');
+
+
+// Route::post('/nfts', [NFTController::class, 'store'])->name('nfts.store');
+
+
+
+Route::post('/storeNFT', [App\Http\Controllers\Userdashcontroller::class, 'storeNFT'])->name('storeNFT');
+
+
+// Display all listed NFTs
+Route::get('/marketplace', [App\Http\Controllers\Userdashcontroller::class, 'marketplace'])->name('marketplace');
+
+// Route to buy an NFT
+Route::post('/buyNFT/{id}', [App\Http\Controllers\Userdashcontroller::class, 'buyNFT'])->name('buyNFT')->middleware('auth');
+
+
+
+
 
 Route::get('/dashb_deposits_completed', [App\Http\Controllers\Userdashcontroller::class, 'dashb_deposits_completed'])->name('dashb_deposits_completed');
 
@@ -633,6 +654,42 @@ Route::get('/portfoliomanagement', [App\Http\Controllers\VisitorController::clas
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// nft functions
+// nft functions
+// nft functions
+// nft functions
+// nft functions
+// nft functions
+
+
+
+
+
+Route::get('/createnft', [App\Http\Controllers\Userdashcontroller::class, 'createnft'])->name('createnft');
+
+Route::get('/buynft', [App\Http\Controllers\Userdashcontroller::class, 'buynft'])->name('buynft');
+
+Route::get('/salenft', [App\Http\Controllers\Userdashcontroller::class, 'salenft'])->name('salenft');
+
+Route::get('/collection', [App\Http\Controllers\Userdashcontroller::class, 'collection'])->name('collection');
 
 
 

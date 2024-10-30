@@ -1,376 +1,221 @@
-<!DOCTYPE html>
-<html lang="zxx">
 
 
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<!doctype html>
+<html lang="en">
+  <head>
 
-<head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="index,follow">
-    <meta name="robots" content="noindex,follow">
-    <meta name="robots" content="index,nofollow">
-    <meta name="robots" content="noindex,nofollow">
-    <meta name="googlebot" content="noindex,nofollow,noarchive,nosnippet,noodp" />
-    <meta name="robots" content="noindex,nofollow,noarchive,nosnippet,noodp" />
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Havex Credit Union was launched to make online banking easy and fast.">
-    <meta name="keywords" content="Bank,Havex Credit Union , Internet Banking" />
-    <meta property="og:description" content="Havex Credit Union was launched to make online banking easy and fast.">
-    <link rel="canonical" href="/">
-    <meta property="og:url" content="">
-    <meta property="og:site_name" content="Havex Credit Union">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap%404.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js%401.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap%404.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+    <meta charset="UTF-8">
     
-<!-- 
-    <link rel="stylesheet" href="https://bs-abadelb.com/temp/custom/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://bs-abadelb.com/temp/custom/assets/css/flaticon.css">
-    <link rel="stylesheet" href="https://bs-abadelb.com/temp/custom/assets/css/remixicon.css">
-    <link rel="stylesheet" href="https://bs-abadelb.com/temp/custom/assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://bs-abadelb.com/temp/custom/assets/css/odometer.min.css">
-    <link rel="stylesheet" href="https://bs-abadelb.com/temp/custom/assets/css/fancybox.css">
-    <link rel="stylesheet" href="https://bs-abadelb.com/temp/custom/assets/css/aos.css">
-    <link rel="stylesheet" href="https://bs-abadelb.com/temp/custom/assets/css/style.css">
-    <link rel="stylesheet" href="https://bs-abadelb.com/temp/custom/assets/css/responsive.css">
-    <link rel="stylesheet" href="https://bs-abadelb.com/temp/custom/assets/css/dark-theme.css">
-     -->
-    
-    <link rel="stylesheet" href="{{ asset('bsassets/temp/custom/assets/css/bootstrap.min.css') }}">
+    <!-- Required meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="{{ asset('bsassets/temp/custom/assets/css/flaticon.css') }}">
-    <link rel="stylesheet" href="{{ asset('bsassets/temp/custom/assets/css/remixicon.css') }}">
-    <link rel="stylesheet" href="{{ asset('bsassets/temp/custom/assets/css/owl.carousel.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('bsassets/temp/custom/assets/css/odometer.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('bsassets/temp/custom/assets/css/fancybox.css') }}">
-    <link rel="stylesheet" href="{{ asset('bsassets/temp/custom/assets/css/aos.css') }}">
-    <link rel="stylesheet" href="{{ asset('bsassets/temp/custom/assets/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('bsassets/temp/custom/assets/css/responsive.css') }}">
-    <link rel="stylesheet" href="{{ asset('bsassets/temp/custom/assets/css/dark-theme.css') }}">
-    
-    <link href="{{ asset('bsassets/public/asset/fonts/fontawesome/css/all.css') }}" rel="stylesheet" type="text/css">
-  <link href="{{ asset('bsassets/public/dashboard/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css " />
-  <link href="{{ asset('bsassets/public/dashboard/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css" />
-  
-    <title>Havex Credit Union - Dedicated to innovating, simplifying, and humanizing digital banking.</title>
-    <link rel="icon" type="image/png" href="{{ asset('bsassets/temp/custom/assets/storage/app/public/photos/Rgi1N1eBWuNgBzWDWyK2meM5kRLdWQaB8HyVegPu.png') }}">
-</head>
-
-
-
-
-
-
-<body>
-
-
-
-
-    <div class="page-wrapper">
-
-        <header class="header-wrap style2">
-            <div class="header-bottom">
-                <div class="container">
-
-                    <nav class="navbar navbar-expand-md navbar-light" style="">
-                        <a class="navbar-brand" href="/">
-<img class="logo-light" src="https://i.ibb.co/grC0bpP/HVX-1.png" alt="Havex Credit Union  " width="200" height="260">
-<img class="logo-dark" src="https://i.ibb.co/grC0bpP/HVX-1.png" alt="Havex Credit Union" width="200" height="260">
-</a>
-
-
-                        <div id="google_translate_element"></div>
-                        <div class="collapse navbar-collapse main-menu-wrap" id="navbarSupportedContent">
-                            <div class="menu-close d-lg-none">
-                                <a href="javascript:void(0)"> <i class="ri-close-line"></i></a>
-                            </div>
-                            <ul class="navbar-nav ms-auto">
-                                <li class="nav-item">
-                                    <a href="/" class="nav-link active">
-Home
-<!--<i class="ri-arrow-down-s-line"></i>-->
-</a>
-
-                                </li>
-
-
-                                <li class="nav-item">
-                                    <a href="/business" class="nav-link">
- Business
-<!--<i class="ri-arrow-down-s-line"></i>-->
-</a>
-                                </li>
-
-
-                                <li class="nav-item">
-                                    <a href="personal" class="nav-link">
-Personal
-<!--<i class="ri-arrow-down-s-line"></i>-->
-</a>
-                                </li>
-
-
-                                <li class="nav-item">
-                                    <a href="cards" class="nav-link">
-Credit Cards
-<!--<i class="ri-arrow-down-s-line"></i>-->
-</a>
-                                </li>
-
-
-                                <li class="nav-item">
-                                    <a href="loans" class="nav-link">
-Loans
-<!--<i class="ri-arrow-down-s-line"></i>-->
-</a>
-                                </li>
-
-
-                                <li class="nav-item">
-                                    <a href="contact" class="nav-link">Support</a>
-                                </li>
-
-
-                                <li class="nav-item d-lg-none">
-                                    <a href="login" class="nav-link btn style1">ONLINE BANKING<i class="ri-arrow-right-s-line"></i></a>
-                                </li>
-
-                            </ul>
-
-
-
-                            <div class="other-options md-none">
-                                <div class="option-item">
-                                    <div class="user-login">
-                                        <span><i class="ri-user-add-line"></i></span>
-                                        <ul class="list-style">
-                                            <li><a href="login">Sign In</a></li>
-                                            <li><a href="register">Sign Up</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="option-item">
-                                    <a href="login" class="btn style1">ONLINE BANKING<i class="ri-arrow-right-s-line"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </nav>
-                    <div class="mobile-bar-wrap">
-                        <div class="user-login d-lg-none">
-                            <span><i class="ri-user-add-line"></i></span>
-                            <ul class="list-style">
-                                <li><a href="login">Sign In</a></li>
-                                <li><a href="register">Sign Up</a></li>
-                            </ul>
-                        </div>
-                        <div class="mobile-menu d-lg-none">
-                            <a href="javascript:void(0)"><i class="ri-menu-line"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/axicon.png') }}">
 
         
 
-@yield("body")
+        
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+   
+    <title>Axiars</title>
+
+    <style>
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto;  /* Pushes the footer to the bottom */
+}
+
+
+    </style>
+
+
+  </head>
 
 
 
-<footer class="footer-wrap">
-            <div class="container">
-                <div class="row pt-100 pb-75">
-                    <div class="col-xl-3 col-lg-5 col-md-5 col-sm-6">
-                        <div class="footer-widget">
-                            <a href="/" class="footer-logo">
-  <img src="https://i.ibb.co/grC0bpP/HVX-1.png" alt="Image">
-  </a>
-                            <p class="comp-desc">
-                                We are now one of the largest digital banking providers, dedicated to innovating, simplifying, and humanizing banking.
-                            </p>
-                            <ul class="social-profile style1 list-style">
-                                <li>
-                                    <a target="_blank" href="https://facebook.com/">
-  <i class="ri-facebook-fill"></i>
-  </a>
-                                </li>
-                                <li>
-                                    <a target="_blank" href="https://twitter.com/">
-  <i class="ri-twitter-fill"></i>
-  </a>
-                                </li>
-                                <li>
-                                    <a target="_blank" href="https://instagram.com/">
-  <i class="ri-instagram-line"></i>
-  </a>
-                                </li>
-                                <li>
-                                    <a target="_blank" href="https://linkedin.com/">
-  <i class="ri-linkedin-fill"></i>
-  </a>
-                                </li>
-                            </ul>
-                        </div>
+
+  
+<body>
+    <div id="header">
+        <nav class="navbar navbar-expand-lg navbar-light nav-pad">
+            <a href="/">
+                <img src="{{ asset('assets/images/axlogo.png') }}" alt="" class="logo">
+            </a>
+        
+            <!-- Hamburger Menu Button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        
+            <!-- Navbar Links and Other Content -->
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav mr-auto ml-4">
+                    <li class="nav-item mx-2"><a class="text-dark font-weight-bold nav-link" href="/drops.html">Drops</a></li>
+                    <li class="nav-item mx-2"><a class="text-dark font-weight-bold nav-link" href="/stats.html">Stats</a></li>
+                    <li class="nav-item mx-2"><a class="text-dark font-weight-bold nav-link" href="/create.html">Create</a></li>
+                </ul>
+        
+                <!-- Search Box in the center (optional on small screens) -->
+                <span class="mx-auto">
+                    <div class="search-box">
+                        <span class="icon">
+                            <i class="fa fa-search"></i>
+                        </span>
+                        <input type="text" name="search" id="search" class="search" placeholder="Search" />
+                        <span class="right"> </span>
                     </div>
-                    <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6">
-                        <div class="footer-widget">
-                            <h3 class="footer-widget-title">Company</h3>
-                            <ul class="footer-menu list-style">
-                                <li>
-                                    <a href="about" target="_blank">
-  About Us
-  </a>
-                                </li>
-                                <li>
-                                    <a href="business" target="_blank">
-  Business Banking
-  </a>
-                                </li>
-                                <li>
-                                    <a href="personal" target="_blank">
-  Personal Banking
-  </a>
-                                </li>
-                                <li>
-                                    <a href="cards" target="_blank">
-  Credit Cards
-  </a>
-                                </li>
-                                <li>
-                                    <a href="loans" target="_blank">
-  Loans
-  </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-lg-3 col-md-3 col-sm-6">
-                        <div class="footer-widget">
-                            <h3 class="footer-widget-title">Resources</h3>
-                            <ul class="footer-menu list-style">
-                                <li>
-                                    <a href="contact" target="_blank">
-  Contact Us
-  </a>
-                                </li>
-                                <li>
-                                    <a href="faq" target="_blank">
-  FAQ's
-  </a>
-                                </li>
-                                <li>
-                                    <a href="apps" target="_blank">
-  Download App
-  </a>
-                                </li>
-                                <li>
-                                    <a href="privacy-policy" target="_blank">
-  Privacy Policy
-  </a>
-                                </li>
-                                <li>
-                                    <a href="terms-of-service" target="_blank">
-  Terms &amp; Conditions
-  </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-lg-5 col-md-6 col-sm-6 pe-xl-4">
-                        <div class="footer-widget">
-                            <h3 class="footer-widget-title">Transfer Money</h3>
-                            <ul class="footer-menu list-style">
-                                <li>
-                                    <a href="login">
-  Register/Login
-  </a>
-                                </li>
-                                <li>
-                                    <a href="register">
-  IBank Transfer
-  </a>
-                                </li>
-                                <li>
-                                    <a href="login" target="_blank">
-  USA Money Transfer
-  </a>
-                                </li>
-                                <li>
-                                    <a href="login" target="_blank">
-  UK Money Transfer
-  </a>
-                                </li>
-                                <li>
-                                    <a href="login" target="_blank">
-  Euro Money Transfer
-  </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-7 col-md-6 col-sm-6">
-                        <div class="footer-widget">
-                            <h3 class="footer-widget-title">Contact Us</h3>
-                            <ul class="contact-info list-style">
-                                <li>
-                                    <i class="ri-map-pin-fill"></i>
-                                    <h6>Location</h6>
-                                    <p>Oscar Esplà 37, 03007, Alicante, Spain</p>
-                                </li>
-                                <li>
-                                    <i class="ri-mail-open-fill"></i>
-                                    <h6>Email</h6>
-                                    <a href="#">Havex Credit Union</a>
-                                </li>
-                                <li>
-                                    <i class="ri-phone-fill"></i>
-                                    <h6>Phone</h6>
-                                    <a href="">VIP ONLY</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <p class="copyright-text"><i class="ri-copyright-line"></i> <span></span>Copyright. All Rights Reserved By <a href="login" target="_blank">Havex Credit Union</a></p>
-                    </div>
-                </div>
+                </span>
+        
+                <!-- User, ETH Info, and Cart Buttons -->
+                <span class="navbar-text">
+                    <a class="btn main-btn" href="/login">
+
+                    <i class="px-2 fa fa-credit-card"></i>
+                        Login  <span class="text-muted px-2"> </span>
+
+                        <!-- <i class="px-2 fa fa-credit-card"></i>
+                        1.439 ETH <span class="text-muted px-1">|</span>
+                        0.2 WETH -->
+                    </a>
+                    <a class="btn main-btn" href="/account.html">
+                        <!-- <img src="https://i.seadn.io/s/raw/files/d41a9f52c66cc36c269d49f4b6c76651.jpg?auto=format&dpr=1&w=1920" /> -->
+
+                        <img src="https://axieslaravel.themesflat.co/images/avatar/avt-2.jpg" />
+                        <!-- https://axieslaravel.themesflat.co/images/avatar/avt-2.jpg -->
+                    </a>
+                    <a class="btn main-btn">
+                        <i class="px-2 fa fa-shopping-cart"></i>
+                    </a>
+                </span>
             </div>
-        </footer>
+        </nav>
+
+
+        
     </div>
 
-    <a href="javascript:void(0)" class="back-to-top bounce"><i class="ri-arrow-up-s-line"></i></a>
 
 
-    <script data-cfasync="false" src="https://cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.html"></script>
-    <script src="{{ asset('bsassets/temp/custom/assets/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('bsassets/temp/custom/assets/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('bsassets/temp/custom/assets/js/form-validator.min.js') }}"></script>
-    <script src="{{ asset('bsassets/temp/custom/assets/js/contact-form-script.js') }}"></script>
-    <script src="{{ asset('bsassets/temp/custom/assets/js/aos.js') }}"></script>
-    <script src="{{ asset('bsassets/temp/custom/assets/js/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('bsassets/temp/custom/assets/js/odometer.min.js') }}"></script>
-    <script src="{{ asset('bsassets/temp/custom/assets/js/jquery.countdown.min.js') }}"></script>
-    <script src="{{ asset('bsassets/temp/custom/assets/js/fancybox.js') }}"></script>
-    <script src="{{ asset('bsassets/temp/custom/assets/js/jquery.appear.js') }}"></script>
-    <script src="{{ asset('bsassets/temp/custom/assets/js/tweenmax.min.js') }}"></script>
-    <script src="{{ asset('bsassets/temp/custom/assets/js/main.js') }}"></script>
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en'
-            }, 'google_translate_element');
-        }
-    </script>
 
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+
+    
+    <br>
+    <br>
+  
+
+
+        <!-- Body Section Start-->
+
+        <!-- Body Section Start-->
+
+        <!-- Body Section Start-->
+
+
+
+        @yield("body")
+
+
+
+
+            <!-- Body Section End -->
+
+            <!-- Body Section End -->
+
+            <!-- Body Section End -->
+
+
+
+
+
+    <br>
+
+    <br>
+    
+
+    <!-- Footer Section -->
+<footer class="bg-dark text-white pt-4 pb-2">
+    <div class="container">
+        <div class="row">
+            <!-- Footer Column 1: Logo and About Text -->
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <a href="/" class="text-white text-decoration-none">
+                    <img src="{{ asset('assets/images/axlogo.png') }}" alt="Logo" class="logo" style="width: 150px;">
+                </a>
+                <p class="mt-3">Your favorite NFT marketplace, bringing the digital world closer to you.</p>
+            </div>
+
+            <!-- Footer Column 2: Links (Terms and Privacy) -->
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="/terms.html" class="text-white text-decoration-none">Terms of Service</a>
+                    </li>
+                    <li>
+                        <a href="/policy.html" class="text-white text-decoration-none">Privacy Policy</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Footer Column 3: Contact and Social Links -->
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <h5>Contact Us</h5>
+                <ul class="list-unstyled">
+                    <li><a href="mailto:info@axiars.com" class="text-white text-decoration-none">info@axiars.com</a></li>
+                    <li><a href="#" class="text-white text-decoration-none"><i class="fa fa-facebook px-2"></i> Facebook</a></li>
+                    <li><a href="#" class="text-white text-decoration-none"><i class="fa fa-twitter px-2"></i> Twitter</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer Bottom Text -->
+        <div class="row mt-3">
+            <div class="col text-center">
+                <p class="mb-0">&copy; 2024 www.axiars.com All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
 </body>
+
+
+
+
 
 </html>

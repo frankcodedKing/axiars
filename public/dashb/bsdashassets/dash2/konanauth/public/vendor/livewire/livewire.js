@@ -1,1 +1,0 @@
-No Content: https://bs-abadelb.com/dash2/konanauth/public/vendor/livewire/livewire.js?id=90730a3b0e7144480175
